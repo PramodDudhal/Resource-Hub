@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            background-image: url('../static/images/slider_background.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-top: 50px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+        }
+
+        select {
+            margin-top: 5px;
+            margin-bottom: 15px;
+        } 
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #student_year,
+        #teacher_department {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required>
+        </p>
+        <p>
+            <label for="username">Username (College Email):</label><br>
+            <input type="text" id="username" name="username" pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required>
+        </p>
+        <p>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required>
+        </p>
+        <p>
+            <label for="confirm_password">Confirm Password:</label><br>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </p>
+        <p>
+            <label for="user_type">User Type:</label><br>
+            <select id="user_type" name="user_type">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select>
+        </p>
+        <div id="student_year">
+            <label for="year">Year of Study:</label><br>
+            <select id="year" name="year">
+                <option value="1st">1st Year</option>
+                <option value="2nd">2nd Year</option>
+                <option value="3rd">3rd Year</option>
+                <option value="4th">4th Year</option>
+            </select>
+        </div>
+        <div id="teacher_department">
+            <label for="department">Department:</label><br>
+            <select id="department" name="department">
+                <option value="" disabled selected>Select Department</option>
+                <option value="computer">Computer Science</option>
+                <option value="mechanical">Mechanical</option>
+                <option value="E & TC">E & TC</option>
+                <option value="civil">Civil</option>
+                <option value="instrumentation">Instrumentation</option>
+                <option value="math">Mathematics</option>
+                <option value="science">Applied Science</option>
+                <option value="electrical">Electrical</option>
+                <option value="planning">Planning</option> 
+                <option value="manufacturing">Manufacturing</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <p><input type="submit" value="Sign Up"></p>
+    </form>
+
+    <script>
+        document.getElementById('user_type').addEventListener('change', function() {
+            var studentYear = document.getElementById('student_year');
+            var teacherDepartment = document.getElementById('teacher_department');
+
+            if (this.value === 'student') {
+                studentYear.style.display = 'block';
+                teacherDepartment.style.display = 'none';
+            } else if (this.value === 'teacher') {
+                studentYear.style.display = 'none';
+                teacherDepartment.style.display = 'block';
+            }
+        });
+
+        // Validate username to ensure it's a college email
+        document.getElementById('username').addEventListener('input', function() {
+            var usernameInput = this.value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(usernameInput)) {
+                this.setCustomValidity('Please enter a valid college email address.');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    </script>
+</body>
+</html>

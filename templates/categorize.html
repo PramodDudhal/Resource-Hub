@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Resources</title><meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Course Project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
+	<link href="../static/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/responsive.css">
+    <link rel="stylesheet" href="../static/styles/resource.css">
+</head>
+
+<body>
+    <div class="super_container">
+		<!-- Header -->
+		<header class="header d-flex flex-row swipe_up_header">
+			<div class="header_content d-flex flex-row align-items-center">
+				<!-- Logo -->
+				<div class="logo_container">
+					<div class="logo">
+						<img src="..\static\images\logo.png" alt="">
+						<span>Resource Hub</span>
+					</div>
+				</div>
+
+				<!-- Main Navigation -->
+				<nav class="main_nav_container">
+					<div class="main_nav">
+						<ul class="main_nav_list">
+							<li class="main_nav_item"><a href="/">Home</a></li>
+							<li class="main_nav_item"><b><a href="/login">Login</b></a></li>
+							<li class="main_nav_item"><a href="/posts">Discussions</a></li>
+							<li class="main_nav_item"><b><a href="/categorize">Resources</b></a></li>
+							<li class="main_nav_item"><b><a href="/upload">Upload</a></b></a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			
+			<!-- Hamburger -->
+			<div class="hamburger_container">
+				<i class="fas fa-bars trans_200"></i>
+			</div>
+		</header>
+
+		<!-- Menu -->
+		<div class="menu_container menu_mm">
+
+			<!-- Menu Close Button -->
+			<div class="menu_close_container">
+				<div class="menu_close"></div>
+			</div>
+
+			<!-- Menu Items -->
+			<div class="menu_inner menu_mm">
+				<div class="menu menu_mm">
+					<ul class="menu_list menu_mm">
+						<li class="main_nav_item"><a href="/">Home</a></li>
+							<li class="main_nav_item"><b><a href="/login">Login</b></a></li>
+							<li class="main_nav_item"><a href="/discussions">Discussions</a></li>
+							<li class="main_nav_item"><b><a href="/categorize">Resources</b></a></li>
+							<li class="main_nav_item"><b><a href="#id">Search</a></b></a></li>
+					</ul>
+
+					<!-- Menu Social -->
+
+					<div class="menu_social_container menu_mm">
+						<ul class="menu_social menu_mm">
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-instagram"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-twitter"></i></a></li>
+						</ul>
+					</div>
+
+					<div class="menu_copyright menu_mm">Colorlib All rights reserved</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Home -->
+
+		<div class="home">
+
+		
+					<!-- Hero Slide -->
+					<div class="hero_slide">
+						<div class="hero_slide_background" style="background-image:url(../static/images/slider_background.jpg)">
+						</div>
+						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+							<div class="hero_slide_content text-center">
+								<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">
+									<span>SelectCategory</span> 
+								</h1>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				
+			</div>
+
+		</div>
+
+	</div>
+        <!-- Page Content -->
+        <main class="fadeIn">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <h1 class="mt-4 text-center">Categorize Resources</h1>
+        
+                                <form action="/resources" method="GET">
+                                    <div class="form-group">
+                                        <label for="year">Studying Year:</label>
+                                        <select class="form-control" id="year" name="year" required>
+                                            <option value="">Select Year</option>
+                                            <option value="1st">1st Year</option>
+                                            <option value="2nd">2nd Year</option>
+                                            <option value="3rd">3rd Year</option>
+                                            <option value="4th">4th Year</option>
+                                        </select>
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="department">Department:</label>
+                                        <select class="form-control" id="department" name="department" required onchange="updateSubjects()">
+                                            <option value="">Select Department</option>
+                                            <option value="computer">Computer Science</option>
+                                            <option value="mechanical">Mechanical</option>
+                                            <option value="E & TC">E & TC</option>
+                                            <option value="civil">Civil</option>
+                                            <option value="instrumentation">Instrumentation</option>
+                                            <option value="math">Mathematics</option>
+                                            <option value="science">Applied Science</option>
+                                            <option value="electrical">Electrical</option>
+                                            <option value="planning">Planning</option> 
+                                            <option value="manufacturing">Manufacturing</option>
+                                            <!-- Add more department options as needed -->
+                                        </select>
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="subject">Subject:</label>
+                                        <select class="form-control" id="subject" name="subject" required>
+                                            <option value="">Select Subject</option>
+                                            <!-- Options will be dynamically updated based on the selected department -->
+                                        </select>
+                                    </div>
+        
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">View Resources</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <script>
+            function updateSubjects() {
+                var departmentSelect = document.getElementById("department");
+                var subjectSelect = document.getElementById("subject");
+        
+                // Clear existing options
+                subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+        
+                // Add options based on selected department
+                switch (departmentSelect.value) {
+                    case "computer":
+                        subjectSelect.innerHTML += '<option value="cs_subject1">CS Subject 1</option>';
+                        subjectSelect.innerHTML += '<option value="cs_subject2">CS Subject 2</option>';
+                        // Add more Computer Science subjects as needed
+                        break;
+                    case "mechanical":
+                        subjectSelect.innerHTML += '<option value="mech_subject1">Mech Subject 1</option>';
+                        subjectSelect.innerHTML += '<option value="mech_subject2">Mech Subject 2</option>';
+                        // Add more Mechanical subjects as needed
+                        break;
+                    case "E & TC":
+                        subjectSelect.innerHTML += '<option value="etc_subject1">E & TC Subject 1</option>';
+                        subjectSelect.innerHTML += '<option value="etc_subject2">E & TC Subject 2</option>';
+                        // Add more E & TC subjects as needed
+                        break;
+                    case "civil":
+                        subjectSelect.innerHTML += '<option value="civil_subject1">Civil Subject 1</option>';
+                        subjectSelect.innerHTML += '<option value="civil_subject2">Civil Subject 2</option>';
+                        // Add more Civil subjects as needed
+                        break;
+                    case "instrumentation":
+                        subjectSelect.innerHTML += '<option value="instru_subject1">Instrumentation Subject 1</option>';
+                        subjectSelect.innerHTML += '<option value="instru_subject2">Instrumentation Subject 2</option>';
+                        // Add more Instrumentation subjects as needed
+                        break;
+                    case "math":
+                        subjectSelect.innerHTML += '<option value="math_subject1">Mathematics Subject 1</option>';
+                        subjectSelect.innerHTML += '<option value="math_subject2">Mathematics Subject 2</option>';
+                        // Add more Mathematics subjects as needed
+                        break;
+                    case "science":
+                        subjectSelect.innerHTML += '<option value="sci_subject1">Applied Science Subject 1</option>';
+                        subjectSelect.innerHTML += '<option value="sci_subject2">Applied Science Subject 2</option>';
+                        // Add more Applied Science subjects as needed
+                        break;
+                    case "electrical":
+                        subjectSelect.innerHTML += '<option value="elec_subject1">Electrical Subject 1</option>';
+                        subjectSelect.innerHTML += '<option value="elec_subject2">Electrical Subject 2</option>';
+                        // Add more Electrical subjects as needed
+                        break;
+                    case "planning":
+                        subjectSelect.innerHTML += '<option value="plan_subject1">Planning Subject 1</option>';
+                        subjectSelect.innerHTML += '<option value="plan_subject2">Planning Subject 2</option>';
+                        // Add more Planning subjects as needed
+                        break;
+                    case "manufacturing":
+                        subjectSelect.innerHTML += '<option value="manu_subject1">Manufacturing Subject 1</option>';
+                        subjectSelect.innerHTML += '<option value="manu_subject2">Manufacturing Subject 2</option>';
+                        // Add more Manufacturing subjects as needed
+                        break;
+                    // Add more cases for additional departments
+                }
+            }
+        </script>
+        
+        
+    
+                <!-- Footer Content -->
+    
+                <footer class="footer">
+                    <div class="container">
+            
+                        
+                            
+                                <div class="col">
+                                    <div class="section_title text-center">
+            
+                                    </div>
+                                
+                            
+            
+                            <div class="row">
+                                <div class="col text-center">
+            
+                                </div>
+                            </div>
+            
+                        </div>
+            
+                        <!-- Footer Content -->
+            
+                        <div class="footer_content">
+                            <div class="row">
+            
+                                <!-- Footer Column - About -->
+                                <div class="col-lg-3 footer_col">
+            
+                                    <!-- Logo -->
+                                    <div class="logo_container">
+                                        <div class="logo">
+                                            <img src="../static/images/logo.png" alt="">
+                                            <span>Resource Hub</span>
+                                        </div>
+                                    </div>
+            
+                                    <p class="footer_about_text"></p>
+            
+                                </div>
+            
+                                <!-- Footer Column - Menu -->
+            
+                                <div class="col-lg-3 footer_col">
+                                    <div class="footer_column_title">Menu</div>
+                                    <div class="footer_column_content">
+                                        <ul>
+                                        <li class="footer_list_item"><a href="/">Home</a></li>
+                                        <li class="footer_list_item"><a href="/posts">Discussions</a></li>
+                                        <li class="footer_list_item"><a href="/categorize">Resources</a></li>
+                                        <li class="footer_list_item"><a href="/upload">Upload</a></a></li>
+                                        <li class="footer_list_item"><a href="/contact">Contact</a></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+            
+                                <!-- Footer Column - Usefull Links -->
+            
+                                <div class="col-lg-3 footer_col">
+                                    <div class="footer_column_title">Usefull Links</div>
+                                    <div class="footer_column_content">
+                                        <ul>
+                                            <li class="footer_list_item"><a href="#">Testimonials</a></li>
+                                            <li class="footer_list_item"><a href="#">FAQ</a></li>
+                                            <li class="footer_list_item"><a href="#">Community</a></li>
+                                            <li class="footer_list_item"><a href="#">Campus Pictures</a></li>
+                                            <li class="footer_list_item"><a href="#">Tuitions</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+            
+                                <!-- Footer Column - Contact -->
+            
+                                <div class="col-lg-3 footer_col">
+                                    <div class="footer_column_title">Contact</div>
+                                    <div class="footer_column_content">
+                                        <ul>
+                                            <li class="footer_contact_item">
+                                                <div class="footer_contact_icon">
+                                                    <img src="../static/images/placeholder.svg" alt="https://www.flaticon.com/authors/lucy-g">
+                                                </div>COEP Technological University, Pune, Wellesely Rd, Shivajinagar, Pune-411 005,
+                                                Maharashtra, INDIA.
+                                            </li>
+                                            <li class="footer_contact_item">
+                                                <div class="footer_contact_icon">
+                                                    <img src="../static/images/smartphone.svg" alt="https://www.flaticon.com/authors/lucy-g">
+                                                </div>
+                                                +91-20-25507000
+                                            </li>
+                                            <li class="footer_contact_item">
+                                                <div class="footer_contact_icon">
+                                                    <img src="../static/images/envelope.svg" alt="https://www.flaticon.com/authors/lucy-g">
+                                                </div>xyz@gmail.com
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+            
+                            </div>
+                        </div>
+            
+                        <!-- Footer Copyright -->
+            
+                        <div class="footer_bar d-flex flex-column flex-sm-row align-items-center">
+                            <div class="footer_copyright">
+                                <span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                                    is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                        target="_blank">Resource Hub</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </span>
+                            </div>
+                            <div class="footer_social ml-sm-auto">
+                                <ul class="menu_social">
+                                    <li class="menu_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                    <li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+            
+                    </div>
+                </footer>
+            
+                </div>
+            
+                <script src="../static/js/jquery-3.2.1.min.js"></script>
+                <script src="../static/styles/bootstrap4/popper.js"></script>
+                <script src="../static/styles/bootstrap4/bootstrap.min.js"></script>
+                <script src="../static/plugins/greensock/TweenMax.min.js"></script>
+                <script src="../static/plugins/greensock/TimelineMax.min.js"></script>
+                <script src="../static/plugins/scrollmagic/ScrollMagic.min.js"></script>
+                <script src="../static/plugins/greensock/animation.gsap.min.js"></script>
+                <script src="../static/plugins/greensock/ScrollToPlugin.min.js"></script>
+                <script src="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+                <script src="../static/plugins/scrollTo/jquery.scrollTo.min.js"></script>
+                <script src="../static/plugins/easing/easing.js"></script>
+                <script src="../static/js/custom.js"></script>
+            
+            </body>
+            
+            </html>

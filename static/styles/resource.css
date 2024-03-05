@@ -1,0 +1,151 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f8f8;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    width: 100%; /* Remove position: fixed; */
+}
+
+.categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.category-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.category-box:hover {
+    transform: translateY(-5px);
+}
+
+.category-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.category-description {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Category colors */
+.textbook {
+    background-color: #ffd5cd; /* Light red */
+}
+
+.pdf {
+    background-color: #ffefd6; /* Light orange */
+}
+
+.ppt {
+    background-color: #d6f6ff; /* Light blue */
+}
+
+.handwritten-notes {
+    background-color: #daffcd; /* Light green */
+}
+
+.videos {
+    background-color: #ffd9e6; /* Light pink */
+}
+
+.tutorials {
+    background-color: #e0ccff; /* Light purple */
+}
+
+.courses {
+    background-color: #fff3cd; /* Light yellow */
+}
+
+.projects {
+    background-color: #d6ffeb; /* Light turquoise */
+}
+
+.exams {
+    background-color: #ffe6d6; /* Light peach */
+}
+
+.articles {
+    background-color: #e6e6e6; /* Light gray */
+}
+
+.software {
+    background-color: #ffe0b3; /* Light orange */
+}
+ 
+.online-tools {
+    background-color: #b3ffe0; /* Light green */
+}
+
+.lectures {
+    background-color: #e0e0e0; /* Light gray */
+}
+
+.syllabus {
+    background-color: #ffebcd; /* Light pink */
+}
+
+.webinars {
+    background-color: #b3ffff; /* Light blue */
+}
+
+.interview-tips {
+    background-color: #f3cca1; /* Light purple */
+}
+
+.internships {
+    background-color: #f5a5ab; /* Light turquoise */
+}
+
+.career-guidance {
+    background-color: #ffe6e6; /* Light red */
+}
+/* Add more category colors as needed */
+
+/* Footer styles */
+footer p {
+    margin: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 0.5s ease-out;
+}

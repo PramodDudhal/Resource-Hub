@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Resource Hub</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Course Project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
+	<link href="../static/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/responsive.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/resource.css">
+   
+	<!-- Your HTML content here -->
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+    var header = document.querySelector('.swipe_up_header');
+    var lastScrollTop = 0;
+    var delta = 5; // Number of pixels before we start hiding the header
+
+    window.addEventListener("scroll", function() {
+        var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Determine scroll direction and distance
+        var scrollDirection = currentScroll > lastScrollTop ? 'down' : 'up';
+        var scrollDistance = Math.abs(currentScroll - lastScrollTop);
+
+        // If the scroll distance is larger than delta, hide/show the header
+        if (scrollDirection === 'down' && currentScroll > delta) {
+            header.classList.add('hide');
+        } else {
+            header.classList.remove('hide');
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+    }, false);
+});
+
+
+	</script>
+</head>
+
+<body>
+
+	<div class="super_container">
+		<!-- Header -->
+		<header class="header d-flex flex-row swipe_up_header">
+			<div class="header_content d-flex flex-row align-items-center">
+				<!-- Logo -->
+				<div class="logo_container">
+					<div class="logo">
+						<img src="..\static\images\logo.png" alt="">
+						<span>Resource Hub</span>
+					</div>
+				</div>
+
+				<!-- Main Navigation -->
+				<nav class="main_nav_container">
+					<div class="main_nav">
+						<ul class="main_nav_list">
+							<li class="main_nav_item"><a href="/">Home</a></li>
+							<li class="main_nav_item"><b><a href="/login">Login</b></a></li>
+							<li class="main_nav_item"><a href="/posts">Discussions</a></li>
+							<li class="main_nav_item"><b><a href="/categorize">Resources</b></a></li>
+							<li class="main_nav_item"><b><a href="/upload">Upload</a></b></a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			
+			<!-- Hamburger -->
+			<div class="hamburger_container">
+				<i class="fas fa-bars trans_200"></i>
+			</div>
+		</header>
+
+		<!-- Menu -->
+		<div class="menu_container menu_mm">
+
+			<!-- Menu Close Button -->
+			<div class="menu_close_container">
+				<div class="menu_close"></div>
+			</div>
+
+			<!-- Menu Items -->
+			<div class="menu_inner menu_mm">
+				<div class="menu menu_mm">
+					<ul class="menu_list menu_mm">
+						<li class="main_nav_item"><a href="/">Home</a></li>
+							<li class="main_nav_item"><b><a href="/login">Login</b></a></li>
+							<li class="main_nav_item"><a href="/posts">Discussions</a></li>
+							<li class="main_nav_item"><b><a href="/categorize">Resources</b></a></li>
+							<li class="main_nav_item"><b><a href="/upload">Upload</a></b></a></li>
+					</ul>
+
+					<!-- Menu Social -->
+
+					<div class="menu_social_container menu_mm">
+						<ul class="menu_social menu_mm">
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-instagram"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-twitter"></i></a></li>
+						</ul>
+					</div>
+
+					<div class="menu_copyright menu_mm">Colorlib All rights reserved</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Home -->
+
+		<div class="home">
+
+			<!-- Hero Slider -->
+			<div class="hero_slider_container">
+				<div class="hero_slider owl-carousel">
+					
+					<!-- Hero Slide -->
+					<div class="hero_slide">
+						<div class="hero_slide_background" style="background-image:url(../static/images/slider_background.jpg)">
+						</div>
+						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+							<div class="hero_slide_content text-center">
+								<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your
+									<span>Education</span> today!
+								</h1>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- Hero Slide -->
+					<div class="hero_slide">
+						<div class="hero_slide_background" style="background-image:url(../static/images/slider_background.jpg)">
+						</div>
+						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+							<div class="hero_slide_content text-center">
+								<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your
+									<span>Education</span> today!
+								</h1>
+							</div>
+						</div>
+					</div>
+
+					
+					<!-- Hero Slide -->
+					<div class="hero_slide">
+						<div class="hero_slide_background" style="background-image:url(../static/images/slider_background.jpg)">
+						</div>
+						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+							<div class="hero_slide_content text-center">
+								<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your
+									<span>Education</span> today!
+								</h1>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="hero_slider_left hero_slider_nav trans_200"><span class="trans_200">prev</span></div>
+				<div class="hero_slider_right hero_slider_nav trans_200"><span class="trans_200">next</span></div>
+			</div>
+
+		</div>
+
+		<div class="hero_boxes">
+			<div class="hero_boxes_inner">
+				<div class="container">
+					<div class="row">
+
+						<div class="col-lg-4 hero_box_col">
+							<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+								<img src="../static/images/earth-globe.svg" class="svg" alt="">
+								<div class="hero_box_content">
+									<h2 class="hero_box_title">Online Books</h2>
+									<a href="courses.html" class="hero_box_link">view more</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4 hero_box_col">
+							<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+								<img src="../static/images/books.svg" class="svg" alt="">
+								<div class="hero_box_content">
+									<h2 class="hero_box_title">PDF's</h2>
+									<a href="courses.html" class="hero_box_link">view more</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4 hero_box_col">
+							<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+								<img src="../static/images/books.svg" class="svg" alt="">
+								<div class="hero_box_content">
+									<h2 class="hero_box_title">PPT's</h2>
+									<a href="courses.html" class="hero_box_link">view more</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4 hero_box_col">
+							<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+								<img src="../static/images/professor.svg" class="svg" alt="">
+								<div class="hero_box_content">
+									<h2 class="hero_box_title">Teachers Notes</h2>
+									<a href="teachers.html" class="hero_box_link">view more</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Popular -->
+
+		<div class="popular page_section">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="section_title text-center">
+							<h1>Study Material</h1>
+						</div>
+					</div>
+				</div>
+
+				<div class="row course_boxes">
+
+					<!-- Popular Course Item -->
+					<div class="col-lg-4 course_box">
+						<div class="card">
+							<a href="/firstyear">
+							<img class="card-img-top" src="../static/images/course_1.jpg" alt="https://unsplash.com/@kellybrito"></a>
+							<div class="card-body text-center">
+								<div class="card-title"><a href="/firstyear">First Year</a></div>
+								<div class="card-text">Complete Study Resources for First Year.</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Popular Course Item -->
+					<div class="col-lg-4 course_box">
+						<div class="card">
+							<a href="/secondyear">
+							<img class="card-img-top" src="../static/images/course_2.jpg" alt="https://unsplash.com/@cikstefan" ></a>
+							<div class="card-body text-center">
+								<div class="card-title"><a href="/secondyear">Second Year</a></div>
+								<div class="card-text">Complete Study Resources for Second Year.</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Popular Course Item -->
+					<div class="col-lg-4 course_box">
+						<div class="card">
+							<a href="/thirdyear">
+							<img class="card-img-top" src="../static/images/course_3.jpg" alt="https://unsplash.com/@dsmacinnes"> </a>
+							<div class="card-body text-center">
+								<div class="card-title"><a href="/thirdyear">Third Year</a></div>
+								<div class="card-text">Complete Study Resources for Third Year.</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Popular Course Item -->
+					<div class="col-lg-4 course_box">
+						<div class="card">
+							<a href="/fourthyear">
+							<img class="card-img-top" src="../static/images/course_6.jpg" alt="https://unsplash.com/@dsmacinnes"></a>
+							<div class="card-body text-center">
+								<div class="card-title"><a href="/fourthyear">Fourth Year</a></div>
+								<div class="card-text">Complete Study Resources for Forth Year.</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Register -->
+
+		<div class="register">
+
+			<div class="container-fluid">
+
+				<div class="row row-eq-height">
+					<div class="col-lg-6 nopadding">
+
+						<!-- Register -->
+
+
+					</div>
+
+				</div>
+
+				<div class="col-lg-6 nopadding">
+
+
+					<!-- Search -->
+					<div id="id" class="search">
+						<div class="search_section d-flex flex-column align-items-center justify-content-center">
+							<div class="search_background" style="background-image:url(../static/images/search_background.jpg);">
+							</div>
+							<div class="search_content text-center">
+								<h1 class="search_title">Search for your course</h1>
+								<form id="search_form" class="search_form" action="post">
+									<input id="search_form_name" class="input_field search_form_name" type="text"
+										placeholder="Course Name" required="required"
+										data-error="Course name is required.">
+									<input id="search_form_category" class="input_field search_form_category"
+										type="text" placeholder="Category">
+									<input id="search_form_degree" class="input_field search_form_degree" type="text"
+										placeholder="Degree">
+									<button id="search_submit_button" type="submit"
+										class="search_submit_button trans_200" value="Submit"><b>search
+											course</b></button>
+								</form>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Services -->
+
+	<div class="services page_section">
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title text-center">
+						<h1>Our Services</h1>
+					</div>
+				</div>
+			</div>
+
+			<div class="row services_row">
+
+				<div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+					<div class="icon_container d-flex flex-column justify-content-end">
+						<img src="../static/images/earth-globe.svg" alt="">
+					</div>
+					<h3>Online Books</h3>
+					<p> The library's online catalog or contacting the library directly for the most up-to-date
+						information in our collection.</p>
+				</div>
+
+				<div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+					<div class="icon_container d-flex flex-column justify-content-end">
+						<img src="../static/images/exam.svg" alt="">
+					</div>
+					<h3>PYQ with solution</h3>
+					<p>These questions are valuable resources for exam preparation as they give candidates an idea of
+						the types of questions that may be asked, the exam pattern, and the level of difficulty.</p>
+				</div>
+
+				<div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+					<div class="icon_container d-flex flex-column justify-content-end">
+						<img src="../static/images/books.svg" alt="">
+					</div>
+					<h3>PDF's and PPT's</h3>
+					<p>The PDF's and PPT's are so useful according to exam point of view , These are made by the
+						faculties ,which provide the brief information of syllabus topics.</p>
+				</div>
+
+				<div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+					<div class="icon_container d-flex flex-column justify-content-end">
+						<img src="../static/images/professor.svg" alt="">
+					</div>
+					<h3>Professors Notes</h3>
+					<p>The Professors notes are valuable resources for exam preparation as they give candidates an idea
+						of the types of questions that may be asked, the exam pattern, and the level of difficulty. </p>
+				</div>
+
+				<div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+					<div class="icon_container d-flex flex-column justify-content-end">
+						<img src="../static/images/blackboard.svg" alt="">
+					</div>
+					<h3>Under Graduation and Graduation Material</h3>
+					<p>All Under Graduation and Graduation Material are thier on website ,which helps the students to
+						get education. </p>
+				</div>
+				<div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+					<div class="icon_container d-flex flex-column justify-content-end">
+						<img src="../static/images/video.svg" alt="">
+					</div>
+					<h3>Video Lectures </h3>
+					<p>With college study material their are many videos which can help you understand the topic more.
+					</p>
+				</div>
+				<div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+					<div class="icon_container d-flex flex-column justify-content-end">
+						<img src="../static/images/mortarboard.svg" alt="">
+					</div>
+					<h3>Other Study Material </h3>
+					<p>With college study material their are many Books , PDF's , PPT's and Notes of extra study
+						material.</p>
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Testimonials -->
+
+	<div class="testimonials page_section">
+		<!-- <div class="testimonials_background" style="background-image:url(images/testimonials_background.jpg)"></div> -->
+		<div class="testimonials_background_container prlx_parent">
+			<div class="testimonials_background prlx" style="background-image:url(../static/images/event_3.jpg)"></div>
+		</div>
+		<div class="container">
+
+			<div class="row">
+				<div class="col">
+					<div class="section_title text-center">
+						<h1>Purpose Of our Website</h1>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+
+					<div class="testimonials_slider_container">
+
+						<!-- Testimonials Slider -->
+						<div class="owl-carousel owl-theme testimonials_slider">
+
+							<!-- Testimonials Item -->
+							<div class="owl-item">
+								<div class="testimonials_item text-center">
+									<div class="quote">“</div>
+									<p class="testimonials_text">"We emphasize enough how valuable the Resource Hub
+										website has been throughout your academic journey. This platform seamlessly
+										brings together a treasure trove of study resources, making it a one-stop
+										destination for students.
+
+										The vast collection of online books, meticulously crafted PDFs, and insightful
+										PPTs have not only complemented my coursework but also served as indispensable
+										tools for exam preparation. The availability of previous years' question papers
+										with solutions has been a game-changer, offering a real insight into exam
+										patterns and boosting my confidence.
+
+										The inclusion of professors' notes adds a personal touch to the learning
+										experience, providing valuable perspectives directly from the educators.
+										Additionally, the website's user-friendly interface and organized structure make
+										navigation a breeze, saving time and ensuring a seamless learning experience.
+
+										Moreover, the website's commitment to offering both under-graduation and
+										graduation materials underscores its dedication to the holistic educational
+										development of students. The incorporation of extra study materials further
+										enriches the learning journey, fostering a culture of continuous learning beyond
+										the prescribed curriculum.
+
+										In conclusion, Resource Hub's website is not just a repository of study
+										materials; it's a dynamic educational companion that will significantly
+										contribute to your academic success. We are grateful for building this
+										resourceful platform and believe it will continue to empower students in their
+										pursuit of knowledge."</p>
+									<div class="testimonial_user">
+										<div class="testimonial_image mx-auto">
+											<img src="../static/images/event_3.jpg" alt="">
+										</div>
+										<div class="testimonial_name">james cooper</div>
+										<div class="testimonial_title">Under Graduate Student</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Testimonials Item -->
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</div>
+
+	<!-- Events -->
+
+
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+
+			
+				
+					<div class="col">
+						<div class="section_title text-center">
+
+						</div>
+					
+				
+
+				<div class="row">
+					<div class="col text-center">
+
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Footer Content -->
+
+			<div class="footer_content">
+				<div class="row">
+
+					<!-- Footer Column - About -->
+					<div class="col-lg-3 footer_col">
+
+						<!-- Logo -->
+						<div class="logo_container">
+							<div class="logo">
+								<img src="../static/images/logo.png" alt="">
+								<span>Resource Hub</span>
+							</div>
+						</div>
+
+						<p class="footer_about_text"></p>
+
+					</div>
+
+					<!-- Footer Column - Menu -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Menu</div>
+						<div class="footer_column_content">
+							<ul>
+							<li class="footer_list_item"><a href="/">Home</a></li>
+							<li class="footer_list_item"><a href="/posts">Discussions</a></li>
+							<li class="footer_list_item"><a href="/categorize">Resources</a></li>
+							<li class="footer_list_item"><a href="/upload">Upload</a></a></li>
+							<li class="footer_list_item"><a href="/contact">Contact</a></a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer Column - Usefull Links -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Usefull Links</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_list_item"><a href="#">Testimonials</a></li>
+								<li class="footer_list_item"><a href="#">FAQ</a></li>
+								<li class="footer_list_item"><a href="#">Community</a></li>
+								<li class="footer_list_item"><a href="#">Campus Pictures</a></li>
+								<li class="footer_list_item"><a href="#">Tuitions</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer Column - Contact -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Contact</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="../static/images/placeholder.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>COEP Technological University, Pune, Wellesely Rd, Shivajinagar, Pune-411 005,
+									Maharashtra, INDIA.
+								</li>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="../static/images/smartphone.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									+91-20-25507000
+								</li>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="../static/images/envelope.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>xyz@gmail.com
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Footer Copyright -->
+
+			<div class="footer_bar d-flex flex-column flex-sm-row align-items-center">
+				<div class="footer_copyright">
+					<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;
+						<script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+						is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="/aboutus"
+							target="_blank">Resource Hub</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</span>
+				</div>
+				<div class="footer_social ml-sm-auto">
+					<ul class="menu_social">
+						<li class="menu_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+
+	</div>
+
+	<script src="../static/js/jquery-3.2.1.min.js"></script>
+	<script src="../static/styles/bootstrap4/popper.js"></script>
+	<script src="../static/styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="../static/plugins/greensock/TweenMax.min.js"></script>
+	<script src="../static/plugins/greensock/TimelineMax.min.js"></script>
+	<script src="../static/plugins/scrollmagic/ScrollMagic.min.js"></script>
+	<script src="../static/plugins/greensock/animation.gsap.min.js"></script>
+	<script src="../static/plugins/greensock/ScrollToPlugin.min.js"></script>
+	<script src="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="../static/plugins/scrollTo/jquery.scrollTo.min.js"></script>
+	<script src="../static/plugins/easing/easing.js"></script>
+	<script src="../static/js/custom.js"></script>
+
+</body>
+
+</html>

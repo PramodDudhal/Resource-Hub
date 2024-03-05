@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Resources</title>
+</head>
+<body>
+    <h1>View Resources</h1>
+    <form id="resourceForm">
+        <label for="year">Year of Studying:</label>
+        <input type="text" id="year" name="year"><br><br>
+        
+        <label for="branch">Branch of Study:</label>
+        <input type="text" id="branch" name="branch"><br><br>
+        
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject"><br><br>
+        
+        <label for="type">Resource Type:</label>
+        <input type="text" id="type" name="type"><br><br>
+        
+        <input type="submit" value="View">
+    </form>
+
+    <div id="embedContainer"></div>
+
+    <script>
+        document.getElementById("resourceForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Fetch the entered values
+            var year = document.getElementById("year").value;
+            var branch = document.getElementById("branch").value;
+            var subject = document.getElementById("subject").value;
+            var type = document.getElementById("type").value;
+
+            // Construct the URL for fetching resources
+            var url = "/fetch_resources?year=" + encodeURIComponent(year) +
+                      "&branch=" + encodeURIComponent(branch) +
+                      "&subject=" + encodeURIComponent(subject) +
+                      "&type=" + encodeURIComponent(type);
+
+            // Fetch resources from the server
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Clear previous embeds
+                    document.getElementById("embedContainer").innerHTML = "";
+
+                    // Embed each resource
+                    data.forEach(resource => {
+                        var embed = document.createElement("embed");
+                        embed.src = resource.file_path;
+                        embed.width = "800px";
+                        embed.height = "600px";
+                        document.getElementById("embedContainer").appendChild(embed);
+                    });
+                })
+                .catch(error => console.error("Error fetching resources:", error));
+        });
+    </script>
+</body>
+</html>
