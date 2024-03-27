@@ -1,3 +1,4 @@
+# All imports
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
@@ -16,9 +17,13 @@ import random
 import logging
 import os
 
+
+
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+
+
 
 # Creating the "app" & database & uploads folder
 app = Flask(__name__)
@@ -36,6 +41,8 @@ db = SQLAlchemy(app)
 mail = Mail(app)
 migrate = Migrate(app, db)
 
+
+
 # Login things
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -45,6 +52,8 @@ otp_store = {}
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+
 
 # Resource class which will help to store the files
 class Resource(db.Model):
@@ -66,6 +75,8 @@ class User(db.Model, UserMixin):
     resources = db.relationship('Resource', backref="user")
     posts = db.relationship('Post', backref="user", passive_deletes=True)
 
+
+
 # Posts Class
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -74,6 +85,8 @@ class Post(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete="CASCADE"), nullable=False)
     comments = db.relationship('Comment', backref='post', passive_deletes=True)
 
+
+
 # Comments Class
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -81,6 +94,8 @@ class Comment(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete="CASCADE"), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete="CASCADE"), nullable=False)
+
+
 
 # Clases which has help in sign up and login
 class RegistrationForm(FlaskForm):
@@ -115,13 +130,16 @@ class ContactForm(FlaskForm):
     message = TextAreaField('Message', validators=[InputRequired(), Length(min=10)])
     submit = SubmitField('Send')
 
-# General app.routes
+
+
+# index page route
 @app.route("/")
 def index():
     return render_template('index.html')
 
-# Other routes...
 
+
+# Login routes
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -178,10 +196,8 @@ def signup():
     return render_template('signup.html', form=form)
 
 
-# Other routes...
 
-import os
-
+# Upload and view routes
 @app.route('/upload', methods=['GET', 'POST'])
 @login_required
 def upload():
@@ -255,6 +271,8 @@ def view_file(filename):
     file_path = os.path.join(uploads_dir, filename)
     return send_file(file_path, as_attachment=False)
 
+
+
 # Users app.routes
 @app.route('/users')
 @login_required
@@ -272,6 +290,8 @@ def delete_user(user_id):
         return f'User with ID {user_id} deleted successfully.', 200  # HTTP status code 200 for success
     else:
         return f'User with ID {user_id} not found.', 404  # HTTP status code 404 for not found
+
+
 
 # Posts app.routes
 @app.route("/posts")
@@ -306,18 +326,27 @@ def create_post():
 @app.route("/delete-post/<id>")
 @login_required
 def delete_post(id):
-    post = Post.query.filter_by(id=id).first()
-
-    if not post:
-        flash("Post does not exist.", category='error')
-    elif current_user.id != post.author_id:
-        flash('You do not have permission to delete this post.', category='error')
-    else:
+    post = Post.query.get_or_404(id)
+    try:
         db.session.delete(post)
         db.session.commit()
-        flash('Post deleted.', category='success')
+        flash("Post was deleted")
+        posts = Post.query.all()
+        return render_template("post_div.html", author = current_user, posts=posts)
+    except:
+        flash("There was an error while deleting the post, try again")
+        posts = Post.query.all()
+        return render_template("post_div.html", author = current_user, posts=posts)
+    # if not post:
+    #     flash("Post does not exist.", category='error')
+    # elif current_user.id != post.author_id:
+    #     flash('You do not have permission to delete this post.', category='error')
+    # else:
+    #     db.session.delete(post)
+    #     db.session.commit()
+    #     flash('Post deleted.', category='success')
 
-    return redirect(url_for('posts'))
+    # return redirect(url_for('posts'))
 
 @app.route("/create-comment/<post_id>", methods=['POST'])
 @login_required
@@ -353,8 +382,9 @@ def delete_comment(comment_id):
 
     return redirect(url_for('posts'))
 
-# Additional routes...
 
+
+# Additional routes...
 @app.route('/resources')
 @login_required
 def resources():
