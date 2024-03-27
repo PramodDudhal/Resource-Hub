@@ -9,9 +9,6 @@ from datetime import datetime
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate
 from flask_mail import Mail, Message
-import hashlib
-import json
-import smtplib
 import sqlite3
 import random
 import logging
@@ -55,7 +52,7 @@ def load_user(user_id):
 
 
 
-# Resource class which will help to store the files
+# User & Resource class which will help to store the user & files
 class Resource(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     year_of_studying = db.Column(db.String(10))
@@ -77,7 +74,7 @@ class User(db.Model, UserMixin):
 
 
 
-# Posts Class
+# Posts & Comment Class helps with doubt forum
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text, nullable=False)
@@ -85,9 +82,6 @@ class Post(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete="CASCADE"), nullable=False)
     comments = db.relationship('Comment', backref='post', passive_deletes=True)
 
-
-
-# Comments Class
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(200), nullable=False)
@@ -527,6 +521,13 @@ def send_reset_password_email(email):
 If you did not make this request, simply ignore this email and no changes will be made.
 '''
     mail.send(msg)
+
+
+
+# Internal error handlers
+@app.errorhandler(401)
+def page_not_found(e):
+	return render_template("401.html"), 401
 
 
 
