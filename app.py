@@ -111,18 +111,11 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired()])
     submit = SubmitField('Login')
 
-class Contact(db.Model):
+class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
-    message = db.Column(db.Text, nullable=False)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
-
-class ContactForm(FlaskForm):
-    name = StringField('Name', validators=[InputRequired(), Length(min=2, max=100)])
-    email = StringField('Email', validators=[InputRequired(), Email()])
-    message = TextAreaField('Message', validators=[InputRequired(), Length(min=10)])
-    submit = SubmitField('Send')
+    name = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    message = db.Column(db.Text)
 
 
 
@@ -189,7 +182,10 @@ def signup():
 
     return render_template('signup.html', form=form)
 
-
+@login_manager.unauthorized_handler
+def unauthorized():
+    flash('You must be logged in to access this page.', 'error')
+    return redirect(url_for('login'))
 
 # Upload and view routes
 @app.route('/upload', methods=['GET', 'POST'])
@@ -384,25 +380,6 @@ def delete_comment(comment_id):
 def resources():
     return render_template('resources.html')
 
-@app.route('/contact', methods=['GET', 'POST'])
-@login_required
-def contact():
-    form = ContactForm()
-    if form.validate_on_submit():
-        name = form.name.data
-        email = form.email.data
-        message = form.message.data
-
-        new_contact = Contact(name=name, email=email, message=message)
-        db.session.add(new_contact)
-        db.session.commit()
-
-        flash('Your message has been sent successfully!', 'success')
-        return redirect(url_for('/'))  # Corrected redirection to the index route
-
-    return render_template('contact.html', form=form)
-
-
 @app.route("/categorize")
 @login_required
 def categorize():
@@ -521,6 +498,39 @@ def send_reset_password_email(email):
 If you did not make this request, simply ignore this email and no changes will be made.
 '''
     mail.send(msg)
+
+@app.route('/contact', methods=['GET', 'POST'])
+@login_required
+def feedback():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+        
+        # Save the feedback to the database
+        new_feedback = Feedback(name=name, email=email, message=message)
+        db.session.add(new_feedback)
+        db.session.commit()
+        
+        return 'Thank you for your feedback!'
+    return render_template('contact.html')
+
+
+
+@app.route("/testimonials")
+@login_required
+def testimonials():
+    return render_template("testimonials.html")
+
+@app.route("/FAQ")
+@login_required
+def FAQ():
+    return render_template("FAQ.html")
+
+@app.route("/privacy")
+@login_required
+def privacy():
+    return render_template("privacy.html")
 
 
 
