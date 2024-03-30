@@ -309,6 +309,10 @@ def create_post():
 def delete_post(id):
     post = Post.query.get_or_404(id)
     try:
+        comments = Comment.query.filter_by(post_id=id).all()
+        for comment in comments:
+            db.session.delete(comment)
+            db.session.commit()
         db.session.delete(post)
         db.session.commit()
         flash("Post was deleted")

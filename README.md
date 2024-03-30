@@ -1,28 +1,22 @@
-This is the change I made just now
-2nd change
+# Academic Resource Hub
 
-Thanks for downloading this theme!
+## Introduction
+In the academic world, staying connected and sharing resources with classmates is crucial for success. This "Academic Resource Hub" is a central place where students can easily communicate and access all the materials they need. It ensures everyone knows what resources are available, benefiting not just individuals but the entire academic community. We beleive in the saying:
+> Sharing is Caring 🖤
 
-## Other Useful Links
+## Technologies Used
+We have used the following technologies:
 
-**ThemeWagon** is a great source for downloading free HTML templates built with the latest technology.
+- <u>**Python-Flask:**</u> We have used python's framework: Flask as our backend. We chose to use it mainly because of the following features:
+    1. <u>Lightweight and Flexible:</u> Flask is a micro-framework, meaning it's lightweight and offers flexibility in designing and structuring our backend according to our project's needs.
 
-To download free templates, follow this link: https://themewagon.com/theme_tag/free/
+    2. <u>Easy to Learn:</u> Flask has a simple and intuitive syntax, making it relatively easy for us to learn and use.
 
-Besides that, you can buy our premium templates for making your web development experience unforgettable.
+    3. <u>Jinja2 Templating:</u> Flask integrates Jinja2 templating engine, which simplifies the process of creating dynamic web pages by allowing us to embed Python code directly into HTML templates.
 
-Visit the store from here: https://themewagon.com/theme-categories/premium-templates/
+    4. <u>Integration with Other Technologies:</u> Flask seamlessly integrates with other technologies and frameworks, such as SQLAlchemy for database integration.
 
-Alternatively, here's our top most trending and selling items:
+- <u>**SQLAlchemy:**</u> We have used flask's integrated feature: SQLAlchemy to store our database. We chose to use it mainly because of the following features:
+    1. <u>Flexible Querying:</u> SQLAlchemy provides a flexible query API that allows developers to construct complex database queries using Pythonic syntax.
 
-* [**Sparrow**](https://themewagon.com/themes/sparrow/) - A multipurpose template made with Bootstrap 4.1 and world's finest animation.
-* [**Posh**](https://themewagon.com/themes/posh-html5-bootstrap-4-template/) - Bootstrap 4 template with a myriad number of ready-to-deploy sections. 
-* [**Elixir**](https://themewagon.com/themes/elixir-elegant-html5-bootstrap-template-consultancy-agency-website/) - Bootstrap 4 agency template. Best for smooth animated scrolling. 
-* [**Freya**](https://themewagon.com/themes/bootstrap-4-premium-interior-design-template-freya/) - Interior design template made with Bootstrap 4. 
-* [**Reign Pro**](https://themewagon.com/themes/reign-pro-premium-corporate-agency-html5-template/) - A corporate template with a visually unique design scheme. 
-* [**Boots4**](https://themewagon.com/themes/first-ever-bootstrap-4-template/) - One of the first Bootstrap 4 templates ever made on earth. 
-* [**Hideaway**](https://themewagon.com/themes/hideaway/) - A template for resorts. Built with Bootstrap 4. 
-* [**Baikal**](https://themewagon.com/themes/bootstrap-4-startup-small-business-website-template/) - A smart Bootstrap template for start-up. 
-* [**Mega Discount**](https://themewagon.com/themes/mega-discount-bundle/) - A bundle of 26 HTML5 templates; best value for your money. 
-
-
+    2. <u>Schema Definition and Migration:</u> SQLAlchemy allows developers to define database schemas using Python classes and declarative syntax. It supports automatic schema generation based on class definitions and provides tools for database schema migration, making it easier to manage changes to the database schema over time.

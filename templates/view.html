@@ -16,19 +16,108 @@
 </head>
 
 <body>
+    <div class="super_container">
+		<!-- Header -->
+		<header class="header d-flex flex-row swipe_up_header">
+			<div class="header_content d-flex flex-row align-items-center">
+				<!-- Logo -->
+				<div class="logo_container">
+					<div class="logo">
+						<img src="..\static\images\logo.png" alt="">
+						<span>Resource Hub</span>
+					</div>
+				</div>
+
+				<!-- Main Navigation -->
+				<nav class="main_nav_container">
+					<div class="main_nav">
+						<ul class="main_nav_list">
+							<li class="main_nav_item"><a href="/">Home</a></li>
+							<li class="main_nav_item"><b><a href="/login">Login</b></a></li>
+							<li class="main_nav_item"><a href="/posts">Discussions</a></li>
+							<li class="main_nav_item"><b><a href="/categorize">Resources</b></a></li>
+							<li class="main_nav_item"><b><a href="/upload">Upload</a></b></a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			
+			<!-- Hamburger -->
+			<div class="hamburger_container">
+				<i class="fas fa-bars trans_200"></i>
+			</div>
+		</header>
+
+		<!-- Menu -->
+		<div class="menu_container menu_mm">
+
+			<!-- Menu Close Button -->
+			<div class="menu_close_container">
+				<div class="menu_close"></div>
+			</div>
+
+			<!-- Menu Items -->
+			<div class="menu_inner menu_mm">
+				<div class="menu menu_mm">
+					<ul class="menu_list menu_mm">
+						<li class="main_nav_item"><a href="/">Home</a></li>
+							<li class="main_nav_item"><b><a href="/login">Login</b></a></li>
+							<li class="main_nav_item"><a href="/discussions">Discussions</a></li>
+							<li class="main_nav_item"><b><a href="/categorize">Resources</b></a></li>
+							<li class="main_nav_item"><b><a href="#id">Search</a></b></a></li>
+					</ul>
+
+					<!-- Menu Social -->
+
+					<div class="menu_social_container menu_mm">
+						<ul class="menu_social menu_mm">
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-instagram"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-twitter"></i></a></li>
+						</ul>
+					</div>
+
+					<div class="menu_copyright menu_mm">Colorlib All rights reserved</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Home -->
+
+		<div class="home">
+
+		
+					<!-- Hero Slide -->
+					<div class="hero_slide">
+						<div class="hero_slide_background" style="background-image:url(../static/images/slider_background.jpg)">
+						</div>
+						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+							<div class="hero_slide_content text-center">
+								<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">
+									<span>Resource View</span> 
+								</h1>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				
+			</div>
+
+		</div>
+
+	</div>
     <div class="container">
         <div class="row">
 
             <div class="popular page_section">
                 <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="section_title text-center">
-                                <h1>Resource View</h1>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="row course_boxes">
                         {% for file in files %}
                         <div class="col-lg-4 course_box">
