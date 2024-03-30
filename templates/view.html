@@ -1,64 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Resources</title>
+    <title>Files</title>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Course Project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
+	<link href="../static/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/responsive.css">
 </head>
 <body>
-    <h1>View Resources</h1>
-    <form id="resourceForm">
-        <label for="year">Year of Studying:</label>
-        <input type="text" id="year" name="year"><br><br>
-        
-        <label for="branch">Branch of Study:</label>
-        <input type="text" id="branch" name="branch"><br><br>
-        
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject"><br><br>
-        
-        <label for="type">Resource Type:</label>
-        <input type="text" id="type" name="type"><br><br>
-        
-        <input type="submit" value="View">
-    </form>
-
-    <div id="embedContainer"></div>
-
-    <script>
-        document.getElementById("resourceForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+    <div class="container">
+        <div class="row">
             
-            // Fetch the entered values
-            var year = document.getElementById("year").value;
-            var branch = document.getElementById("branch").value;
-            var subject = document.getElementById("subject").value;
-            var type = document.getElementById("type").value;
+            <div class="popular page_section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="section_title text-center">
+                                <h1>Resource View</h1>
+                            </div>
+                        </div>
+                    </div>
 
-            // Construct the URL for fetching resources
-            var url = "/fetch_resources?year=" + encodeURIComponent(year) +
-                      "&branch=" + encodeURIComponent(branch) +
-                      "&subject=" + encodeURIComponent(subject) +
-                      "&type=" + encodeURIComponent(type);
-
-            // Fetch resources from the server
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Clear previous embeds
-                    document.getElementById("embedContainer").innerHTML = "";
-
-                    // Embed each resource
-                    data.forEach(resource => {
-                        var embed = document.createElement("embed");
-                        embed.src = resource.file_path;
-                        embed.width = "800px";
-                        embed.height = "600px";
-                        document.getElementById("embedContainer").appendChild(embed);
-                    });
-                })
-                .catch(error => console.error("Error fetching resources:", error));
-        });
-    </script>
+                    <div class="row course_boxes">
+                        {% for file in files %}
+                        <div class="col-lg-4 course_box">
+                            <div class="card">
+                                <img class="card-img-top" src="../static/images/file.png" alt="https://unsplash.com/@kellybrito">
+                                <div class="card-body text-center">
+                                    <div class="card-title">{{ file.title }}</div>
+                                    <div class="card-text"><br>Upload Date: {{ file.upload_date.strftime("%d-%m-%Y") }}</div><br>
+                                    <div class="card-text">Upload Time: {{ file.upload_date.strftime("%H:%M") }}</div><br>
+                                    <div class="card-text">Upload User: {{ file.user_username }}</div><br>
+                                    <a href="{{ file.file_path }}" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 </body>
 </html>
