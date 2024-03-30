@@ -55,13 +55,14 @@ def load_user(user_id):
 # User & Resource class which will help to store the user & files
 class Resource(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(500))
     year_of_studying = db.Column(db.String(10))
     branch_of_study = db.Column(db.String(100))
     subject = db.Column(db.String(100))
     resource_type = db.Column(db.String(50))
     file_path = db.Column(db.String(200))
     upload_date = db.Column(db.DateTime, default=datetime.now)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_username = db.Column(db.Integer, db.ForeignKey('user.username'))
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -196,6 +197,7 @@ def upload():
         branch_of_study = request.form['branch']
         subject = request.form['subject']
         resource_type = request.form['type']
+        title = request.form['title']
         file = request.files['file']
         if file:
             filename = secure_filename(file.filename)
@@ -207,17 +209,18 @@ def upload():
         
             # Check if the user is authenticated
             if current_user.is_authenticated:
-                user_id = current_user.id
+                user_username = current_user.username
             else:
                 flash('You must be logged in to upload resources.', 'error')
                 return redirect(url_for('login'))  # Redirect to login page if user is not logged in
         
             new_resource = Resource(
-                user_id=user_id,
+                user_username=user_username,
                 year_of_studying=year_of_studying,
                 branch_of_study=branch_of_study,
                 subject=subject,
                 resource_type=resource_type,
+                title = title,
                 file_path=file_path
             )
         
@@ -228,31 +231,19 @@ def upload():
     
     return render_template('upload.html')
 
-@app.route('/view')
+@app.route('/select')
+def select():
+    return render_template('select.html')
+
+@app.route('/view', methods=['POST'])
 @login_required
 def view():
-    resources = Resource.query.all()
-    return render_template('view.html', resources=resources)
-
-@app.route('/fetch_resources')
-@login_required
-def fetch_resources():
-    year = request.args.get('year')
-    branch = request.args.get('branch')
-    subject = request.args.get('subject')
-    resource_type = request.args.get('type')
-
-    resources = Resource.query.filter_by(year_of_studying=year,
-                                         branch_of_study=branch,
-                                         subject=subject,
-                                         resource_type=resource_type).all()
-
-    # Serialize the resources to JSON
-    serialized_resources = [{
-        'file_path': resource.file_path,
-    } for resource in resources]
-
-    return jsonify(serialized_resources)
+    year = request.form.get('year')
+    branch = request.form.get('branch')
+    subject = request.form.get('subject')
+    type = request.form.get('type')
+    files = Resource.query.filter_by(year_of_studying=year, branch_of_study=branch, subject=subject, resource_type=type).all()
+    return render_template('view.html', files=files)
 
 @app.route('/uploads/<path:filename>')
 @login_required
