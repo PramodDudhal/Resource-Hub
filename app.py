@@ -25,8 +25,8 @@ logger = logging.getLogger(__name__)
 # Creating the "app" & database & uploads folder
 app = Flask(__name__)
 app.secret_key = "thisisasecretkey"
+app.config['SECRET_KEY'] = 'thisisasecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contacts.db'
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
@@ -451,7 +451,7 @@ def reset_password():
 def get_old_password(username):
     try:
         # Connect to the database
-        conn = sqlite3.connect('instance/contacts.db')
+        conn = sqlite3.connect('instance/data.db')
         cursor = conn.cursor()
 
         # Query the database for the hashed password

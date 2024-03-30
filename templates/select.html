@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,5 +21,214 @@
         
         <input type="submit" value="Submit">
     </form>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Resource Details</title>
+    <style>
+        body {
+            background-image: url('../static/images/slider_background.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: rgba(242, 242, 242, 0.8); /* Semi-transparent background */
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        input[type="submit"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="file"] {
+            cursor: pointer;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Resource Details</h1>
+    <form action="/view" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <label for="year">Year of Studying:</label>
+        <select id="year" name="year">
+            <option value="">Select Year</option>
+            <option value="1st">1st Year</option>
+            <option value="2nd">2nd Year</option>
+            <option value="3rd">3rd Year</option>
+            <option value="4th">4th Year</option>
+        </select>
+
+        <label for="branch">Branch of Study:</label>
+        <select id="branch" name="branch">
+            <option value="">Select Branch</option>
+            <option value="computer">Computer Science</option>
+            <option value="mechanical">Mechanical</option>
+            <option value="E & TC">E & TC</option>
+            <option value="civil">Civil</option>
+            <option value="instrumentation">Instrumentation</option>
+            <option value="math">Mathematics</option>
+            <option value="science">Applied Science</option>
+            <option value="electrical">Electrical</option>
+            <option value="planning">Planning</option> 
+            <option value="manufacturing">Manufacturing</option>
+        </select>
+
+        <label for="subject">Subject:</label>
+        <select id="subject" name="subject">
+            <option value="">Select Subject</option>
+            <!-- Options will be dynamically updated based on the selected branch -->
+        </select>
+
+        <label for="type">Resource Type:</label>
+        <select id="type" name="type">
+            <option value="">Select Resource Type</option>
+            <option value="pdf">PDF</option>
+            <option value="ppt">PPT</option>
+            <option value="handwritten">Handwritten Notes</option>
+            <option value="video">Video Lecture</option>
+            <!-- Add more resource types as needed -->
+        </select>
+        <span id="typeError" class="error"></span>
+
+        <input type="submit" value="View">
+    </form>
+
+    <script>
+        // Function to update subject options based on selected branch
+        function updateSubjects() {
+            var branchSelect = document.getElementById("branch");
+            var subjectSelect = document.getElementById("subject");
+
+            // Clear existing options
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+
+            // Add options based on selected branch
+            switch (branchSelect.value) {
+                case "computer":
+                    subjectSelect.innerHTML += '<option value="cs_subject1">CS Subject 1</option>';
+                    subjectSelect.innerHTML += '<option value="cs_subject2">CS Subject 2</option>';
+                    // Add more Computer Science subjects as needed
+                    break;
+                case "mechanical":
+                    subjectSelect.innerHTML += '<option value="mech_subject1">Mech Subject 1</option>';
+                    subjectSelect.innerHTML += '<option value="mech_subject2">Mech Subject 2</option>';
+                    // Add more Mechanical subjects as needed
+                    break;
+                case "E & TC":
+                    subjectSelect.innerHTML += '<option value="etc_subject1">E & TC Subject 1</option>';
+                    subjectSelect.innerHTML += '<option value="etc_subject2">E & TC Subject 2</option>';
+                    // Add more E & TC subjects as needed
+                    break;
+                case "civil":
+                    subjectSelect.innerHTML += '<option value="civil_subject1">Civil Subject 1</option>';
+                    subjectSelect.innerHTML += '<option value="civil_subject2">Civil Subject 2</option>';
+                    // Add more Civil subjects as needed
+                    break;
+                case "instrumentation":
+                    subjectSelect.innerHTML += '<option value="instru_subject1">Instrumentation Subject 1</option>';
+                    subjectSelect.innerHTML += '<option value="instru_subject2">Instrumentation Subject 2</option>';
+                    // Add more Instrumentation subjects as needed
+                    break;
+                case "math":
+                    subjectSelect.innerHTML += '<option value="math_subject1">Mathematics Subject 1</option>';
+                    subjectSelect.innerHTML += '<option value="math_subject2">Mathematics Subject 2</option>';
+                    // Add more Mathematics subjects as needed
+                    break;
+                case "science":
+                    subjectSelect.innerHTML += '<option value="sci_subject1">Applied Science Subject 1</option>';
+                    subjectSelect.innerHTML += '<option value="sci_subject2">Applied Science Subject 2</option>';
+                    // Add more Applied Science subjects as needed
+                    break;
+                case "electrical":
+                    subjectSelect.innerHTML += '<option value="elec_subject1">Electrical Subject 1</option>';
+                    subjectSelect.innerHTML += '<option value="elec_subject2">Electrical Subject 2</option>';
+                    // Add more Electrical subjects as needed
+                    break;
+                case "planning":
+                    subjectSelect.innerHTML += '<option value="plan_subject1">Planning Subject 1</option>';
+                    subjectSelect.innerHTML += '<option value="plan_subject2">Planning Subject 2</option>';
+                    // Add more Planning subjects as needed
+                    break;
+                case "manufacturing":
+                    subjectSelect.innerHTML += '<option value="manu_subject1">Manufacturing Subject 1</option>';
+                    subjectSelect.innerHTML += '<option value="manu_subject2">Manufacturing Subject 2</option>';
+                    // Add more Manufacturing subjects as needed
+                    break;
+                // Add more cases for additional branches
+            }
+        }
+
+        // Call updateSubjects() when branch selection changes
+        document.getElementById("branch").addEventListener("change", updateSubjects);
+
+        // Function to validate form
+        function validateForm() {
+            var typeSelect = document.getElementById("type");
+            var fileInput = document.getElementById("file");
+            var typeError = document.getElementById("typeError");
+            var fileError = document.getElementById("fileError");
+
+            // Reset error messages
+            typeError.textContent = "";
+            fileError.textContent = "";
+
+            // Validate resource type
+            if (typeSelect.value === "") {
+                typeError.textContent = "Please select a resource type.";
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>
