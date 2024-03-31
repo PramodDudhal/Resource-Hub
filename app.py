@@ -438,6 +438,21 @@ If you did not make this request, simply ignore this email and no changes will b
 '''
     mail.send(msg)
 
+@app.route('/change_password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    return render_template('change_password.html')
+
+@app.route('/update_password', methods=['POST'])
+@login_required
+def update_password():
+    new_password = request.form.get('new_password')
+    user_id = current_user.id
+    user = User.query.filter_by(id=user_id).first()
+    user.password = new_password
+    db.session.commit()
+    return render_template('success.html', param = "Password Change")
+
 @app.route('/contact', methods=['GET', 'POST'])
 @login_required
 def feedback():
