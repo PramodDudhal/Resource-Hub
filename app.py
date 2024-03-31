@@ -1,9 +1,9 @@
 # All imports
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, send_file
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField 
-from wtforms.validators import InputRequired, Length, EqualTo, Email
+from wtforms import StringField, PasswordField, SubmitField, SelectField
+from wtforms.validators import InputRequired, Length, EqualTo
 from werkzeug.utils import secure_filename
 from datetime import datetime
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
@@ -127,7 +127,7 @@ def index():
 
 
 
-# Login routes
+# Login and signup routes
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -157,8 +157,6 @@ def logout():
     logout_user()
     flash('You have been logged out', 'success')
     return render_template('success.html', param = "Logout")
-
-
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -250,17 +248,6 @@ def view_file(filename):
     file_path = os.path.join(uploads_dir, filename)
     return send_file(file_path, as_attachment=False)
 
-@app.route('/delete_user/<int:user_id>', methods=['DELETE'])
-@login_required
-def delete_user(user_id):
-    user = User.query.get(user_id)
-    if user:
-        db.session.delete(user)
-        db.session.commit()
-        return f'User with ID {user_id} deleted successfully.', 200  # HTTP status code 200 for success
-    else:
-        return f'User with ID {user_id} not found.', 404  # HTTP status code 404 for not found
-
 
 
 # Posts app.routes
@@ -348,7 +335,7 @@ def delete_comment(comment_id):
 
 
 
-# Additional routes...
+# Forgot and Change Password routes
 @app.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
@@ -453,6 +440,9 @@ def update_password():
     db.session.commit()
     return render_template('success.html', param = "Password Change")
 
+
+
+# Contact Us route
 @app.route('/contact', methods=['GET', 'POST'])
 @login_required
 def feedback():
@@ -471,6 +461,7 @@ def feedback():
 
 
 
+# Additional routes
 @app.route("/testimonials")
 def testimonials():
     return render_template("testimonials.html")
