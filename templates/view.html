@@ -2,21 +2,21 @@
 <html>
 
 <head>
-    <title>Files</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Course Project">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
-    <link href="../static/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
+	<title>Files</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Course Project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
+	<link href="../static/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
 </head>
 
 <body>
-    <div class="super_container">
+	<div class="super_container">
 		<!-- Header -->
 		<header class="header d-flex flex-row swipe_up_header">
 			<div class="header_content d-flex flex-row align-items-center">
@@ -41,106 +41,55 @@
 					</div>
 				</nav>
 			</div>
-			
+			<div class="header_side d-flex flex-row justify-content-center align-items-center">
+				<a href="/logout"><span style="font-size: 17px;">SIGN OUT</span></a>
+			</div>
 			<!-- Hamburger -->
 			<div class="hamburger_container">
 				<i class="fas fa-bars trans_200"></i>
 			</div>
 		</header>
 
-		<!-- Menu -->
-		<div class="menu_container menu_mm">
-
-			<!-- Menu Close Button -->
-			<div class="menu_close_container">
-				<div class="menu_close"></div>
-			</div>
-
-			<!-- Menu Items -->
-			<div class="menu_inner menu_mm">
-				<div class="menu menu_mm">
-					<ul class="menu_list menu_mm">
-						<li class="main_nav_item"><a href="/">Home</a></li>
-							<li class="main_nav_item"><b><a href="/login">Login</b></a></li>
-							<li class="main_nav_item"><a href="/discussions">Discussions</a></li>
-							<li class="main_nav_item"><b><a href="/categorize">Resources</b></a></li>
-							<li class="main_nav_item"><b><a href="#id">Search</a></b></a></li>
-					</ul>
-
-					<!-- Menu Social -->
-
-					<div class="menu_social_container menu_mm">
-						<ul class="menu_social menu_mm">
-							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-instagram"></i></a></li>
-							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-twitter"></i></a></li>
-						</ul>
-					</div>
-
-					<div class="menu_copyright menu_mm">Colorlib All rights reserved</div>
-				</div>
-
-			</div>
-
-		</div>
-
 		<!-- Home -->
-
 		<div class="home">
-
-		
-					<!-- Hero Slide -->
-					<div class="hero_slide">
-						<div class="hero_slide_background" style="background-image:url(../static/images/slider_background.jpg)">
-						</div>
-						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
-							<div class="hero_slide_content text-center">
-								<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">
-									<span>Resource View</span> 
-								</h1>
+			<!-- Hero Slide -->
+			<div class="hero_slide">
+				<div class="hero_slide_background" style="background-image:url(../static/images/slider_background.jpg)">
+				</div>
+				<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+					<div class="hero_slide_content text-center">
+						<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">
+							<span>Resources View</span>
+						</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="popular page_section">
+			<div class="container">
+				<div class="row course_boxes">
+					{% for file in files %}
+						<div class="col-lg-4 course_box">
+							<div class="card" style="width: 250px;">
+								<img class="card-img-top" src="../static/images/file.png"
+									alt="https://unsplash.com/@kellybrito">
+								<div class="card-body text-center">
+									<div class="card-title">{{ file.title }}</div>
+									<div class="card-text"><br>Upload Type: {{ file.resource_type }}</div><br>
+									<div class="card-text">Upload Date: {{ file.upload_date.strftime("%d-%m-%Y") }}
+									</div><br>
+									<div class="card-text">Upload Time: {{ file.upload_date.strftime("%H:%M") }}</div>
+									<br>
+									<div class="card-text">Upload User: {{ file.user_username }}</div><br>
+									<a href="{{ file.file_path }}" class="btn btn-primary">View</a>
+								</div>
 							</div>
 						</div>
-					</div>
-
+					{% endfor %}
 				</div>
-
-
-				
 			</div>
-
 		</div>
-
 	</div>
-    <div class="container">
-        <div class="row">
-
-            <div class="popular page_section">
-                <div class="container">
-                    <div class="row course_boxes">
-                        {% for file in files %}
-                        <div class="col-lg-4 course_box">
-                            <div class="card" style="width: 250px;">
-                                <img class="card-img-top" src="../static/images/file.png"
-                                    alt="https://unsplash.com/@kellybrito">
-                                <div class="card-body text-center">
-                                    <div class="card-title">{{ file.title }}</div>
-                                    <div class="card-text"><br>Upload Type: {{ file.resource_type }}</div><br>
-                                    <div class="card-text">Upload Date: {{ file.upload_date.strftime("%d-%m-%Y") }}</div><br>
-                                    <div class="card-text">Upload Time: {{ file.upload_date.strftime("%H:%M") }}</div><br>
-                                    <div class="card-text">Upload User: {{ file.user_username }}</div><br>
-                                    <a href="{{ file.file_path }}" class="btn btn-primary">View</a>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
 </body>
 
 </html>

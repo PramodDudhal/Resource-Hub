@@ -143,8 +143,7 @@ def login():
         if user and user.password == password:
             # If the credentials are valid, log the user in
             login_user(user)
-            flash('Login successful!', 'success')
-            return redirect(url_for('index'))
+            return render_template('success.html', param = "Login")
         else:
             # If the credentials are invalid, show an error message
             flash('Invalid username or password', 'error')
@@ -157,7 +156,8 @@ def login():
 def logout():
     logout_user()
     flash('You have been logged out', 'success')
-    return redirect(url_for('index'))
+    return render_template('success.html', param = "Logout")
+
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -183,10 +183,7 @@ def signup():
 
     return render_template('signup.html', form=form)
 
-@login_manager.unauthorized_handler
-def unauthorized():
-    flash('You must be logged in to access this page.', 'error')
-    return redirect(url_for('login'))
+
 
 # Upload and view routes
 @app.route('/upload', methods=['GET', 'POST'])
@@ -227,11 +224,12 @@ def upload():
             db.session.add(new_resource)
             db.session.commit()
         
-            return redirect(url_for('index'))
+            return render_template('success.html', param = "Upload")
     
     return render_template('upload.html')
 
 @app.route('/select')
+@login_required
 def select():
     return render_template('select.html')
 
@@ -251,15 +249,6 @@ def view_file(filename):
     uploads_dir = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
     file_path = os.path.join(uploads_dir, filename)
     return send_file(file_path, as_attachment=False)
-
-
-
-# Users app.routes
-@app.route('/users')
-@login_required
-def user_list():
-    users = User.query.all()
-    return render_template('user_list.html', users=users)
 
 @app.route('/delete_user/<int:user_id>', methods=['DELETE'])
 @login_required
@@ -322,16 +311,6 @@ def delete_post(id):
         flash("There was an error while deleting the post, try again")
         posts = Post.query.all()
         return render_template("posts.html", author = current_user, posts=posts)
-    # if not post:
-    #     flash("Post does not exist.", category='error')
-    # elif current_user.id != post.author_id:
-    #     flash('You do not have permission to delete this post.', category='error')
-    # else:
-    #     db.session.delete(post)
-    #     db.session.commit()
-    #     flash('Post deleted.', category='success')
-
-    # return redirect(url_for('posts'))
 
 @app.route("/create-comment/<post_id>", methods=['POST'])
 @login_required
@@ -370,41 +349,6 @@ def delete_comment(comment_id):
 
 
 # Additional routes...
-@app.route('/resources')
-@login_required
-def resources():
-    return render_template('resources.html')
-
-@app.route("/categorize")
-@login_required
-def categorize():
-    return render_template("categorize.html")
-
-@app.route("/aboutus")
-@login_required
-def about():
-    return render_template("aboutus.html")
-
-@app.route("/firstyear")
-@login_required
-def firstyear():
-    return render_template("firstyear.html")
-
-@app.route("/secondyear")
-@login_required
-def secondyear():
-    return render_template("secondyear.html")
-
-@app.route("/thirdyear")
-@login_required
-def thirdyear():
-    return render_template("thirdyear.html")
-
-@app.route("/fourthyear")
-@login_required
-def fourthyear():
-    return render_template("fourthyear.html")
-
 @app.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
@@ -513,17 +457,18 @@ def feedback():
 
 
 @app.route("/testimonials")
-@login_required
 def testimonials():
     return render_template("testimonials.html")
 
 @app.route("/FAQ")
-@login_required
 def FAQ():
     return render_template("FAQ.html")
 
+@app.route("/aboutus")
+def aboutus():
+    return render_template("aboutus.html")
+
 @app.route("/privacy")
-@login_required
 def privacy():
     return render_template("privacy.html")
 
