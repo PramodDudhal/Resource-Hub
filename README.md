@@ -17,6 +17,34 @@ We have used the following technologies:
     4. <u>Integration with Other Technologies:</u> Flask seamlessly integrates with other technologies and frameworks, such as SQLAlchemy for database integration.
 
 - <u>**SQLAlchemy:**</u> We have used flask's integrated feature: SQLAlchemy to store our database. We chose to use it mainly because of the following features:
-    1. <u>Flexible Querying:</u> SQLAlchemy provides a flexible query API that allows developers to construct complex database queries using Pythonic syntax.
+    1. <u>Flexible Querying:</u> SQLAlchemy provides a flexible query API that allowed us to construct complex database queries using Pythonic syntax.
 
-    2. <u>Schema Definition and Migration:</u> SQLAlchemy allows developers to define database schemas using Python classes and declarative syntax. It supports automatic schema generation based on class definitions and provides tools for database schema migration, making it easier to manage changes to the database schema over time.
+    2. <u>Schema Definition and Migration:</u> SQLAlchemy allows us to define database schemas using Python classes and declarative syntax. It supports automatic schema generation based on class definitions and provides tools for database schema migration, making it easier to manage changes to the database schema over time.
+
+    3. <u>Transaction Management:</u> SQLAlchemy simplifies transaction management by providing a unified interface for beginning, committing, and rolling back database transactions. This helps ensure data integrity and consistency in multi-step database operations.
+
+- <u>**Bootstrap:**</u> We have used Bootstrap as it provides a collection of pre-designed HTML, CSS, and JavaScript components, templates, and utilities that streamline the process of building user interfaces. To be precise, we have used bootstrap version 4 in this project. We chose to use it mainly because of the following features:
+    1. <u>Rapid Development:</u> Bootstrap allowed us to quickly prototype and build responsive web layouts using its ready-made components and grid system. This accelerated the development process and reduced the need for writing custom CSS from scratch.
+
+    2. <u>Consistency and Customization:</u> Bootstrap promotes consistency in design by offering a unified set of styles, components, and typography. We could easily customize the appearance and behavior of Bootstrap components using CSS variables and custom themes to match our project's requirements.
+
+    3. <u>Documentation and Resources:</u> Bootstrap offers comprehensive documentation, examples, and starter templates that guided us through the process of using its components and features effectively. This documentation includes code snippets, explanations, and usage guidelines, making it easier for us to learn and master Bootstrap.
+
+## Features of our Project
+The following features are provided by our project:
+
+- **<u>Sign-in and Sign-out:</u>** Users using our website can seemlessly sign in and sign-out.
+
+- **<u>User Authentication:</u>** User Authentication is implemented using Flask-Login extension.
+
+- **<u>Discussion Forum:</u>** Users can use discussion forum and can communicate and ask doubts amongst themselves
+
+- **<u>Viewing and Uploading Resources:</u>** This is the main crux of our whole project. Users can view and upload resources of all years and branches by selecting options within a form
+
+- **<u>Miscellaneous Pages:</u>** Users can visit pages like FAQs, Testimonials, About Us, etc. to know more about our website
+
+## Contributors
+This project is contributed by Arnav Gavde and Pramod Dudhal. Both of us have created this project during the 4th semester of our 2nd year in COEP Technological University
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](/LICENSE.md) file for details.
