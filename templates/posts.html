@@ -108,7 +108,7 @@
                                 {{ comment.text }}
                             </div>
                             <div>
-                                <small class="text-muted">{{ comment.date_created }}</small>
+                                commented on {{ comment.date_created.strftime("%d-%m-%Y") }} at {{ comment.date_created.strftime("%H:%M") }}
                                 {% if current_user.id == comment.user_id %}
 									<a href="{{ url_for('delete_comment', comment_id=comment.id)}}" class="btn btn-outline-danger btn-sm">Delete Comment</a>
                                 {% endif %}
@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer text-muted">{{ post.date_created }}</div>
+            <div class="card-footer">posted on {{ post.date_created.strftime("%d-%m-%Y") }} at {{ post.date_created.strftime("%H:%M") }}</div>
             <div class="card-footer">
                 <form method="POST" action="/create-comment/{{ post.id }}">
                     <div class="input-group mb-3">

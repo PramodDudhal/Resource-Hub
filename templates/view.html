@@ -126,10 +126,9 @@
                                     alt="https://unsplash.com/@kellybrito">
                                 <div class="card-body text-center">
                                     <div class="card-title">{{ file.title }}</div>
-                                    <div class="card-text"><br>Upload Date: {{ file.upload_date.strftime("%d-%m-%Y") }}
-                                    </div><br>
-                                    <div class="card-text">Upload Time: {{ file.upload_date.strftime("%H:%M") }}</div>
-                                    <br>
+                                    <div class="card-text"><br>Upload Type: {{ file.resource_type }}</div><br>
+                                    <div class="card-text">Upload Date: {{ file.upload_date.strftime("%d-%m-%Y") }}</div><br>
+                                    <div class="card-text">Upload Time: {{ file.upload_date.strftime("%H:%M") }}</div><br>
                                     <div class="card-text">Upload User: {{ file.user_username }}</div><br>
                                     <a href="{{ file.file_path }}" class="btn btn-primary">View</a>
                                 </div>

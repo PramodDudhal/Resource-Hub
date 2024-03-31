@@ -280,7 +280,7 @@ def delete_user(user_id):
 def posts():
     posts = Post.query.all()
     user_id = current_user.id if current_user.is_authenticated else None
-    return render_template("post_div.html", author_id=user_id, posts=posts)
+    return render_template("posts.html", author_id=user_id, posts=posts)
 
 @app.route("/create-post", methods=['GET', 'POST'])
 @login_required
@@ -317,11 +317,11 @@ def delete_post(id):
         db.session.commit()
         flash("Post was deleted")
         posts = Post.query.all()
-        return render_template("post_div.html", author = current_user, posts=posts)
+        return render_template("posts.html", author = current_user, posts=posts)
     except:
         flash("There was an error while deleting the post, try again")
         posts = Post.query.all()
-        return render_template("post_div.html", author = current_user, posts=posts)
+        return render_template("posts.html", author = current_user, posts=posts)
     # if not post:
     #     flash("Post does not exist.", category='error')
     # elif current_user.id != post.author_id:
