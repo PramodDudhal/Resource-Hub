@@ -37,9 +37,13 @@ The following features are provided by our project:
 
 - **<u>User Authentication:</u>** User Authentication is implemented using Flask-Login extension.
 
-- **<u>Discussion Forum:</u>** Users can use discussion forum and can communicate and ask doubts amongst themselves
+- **<u>Forgot Password and Change Password:</u>** If users ever feel like changing passwords then they can change it. Also if users ever forget their password then they are mailed their original password with the help of OTP verification
 
-- **<u>Viewing and Uploading Resources:</u>** This is the main crux of our whole project. Users can view and upload resources of all years and branches by selecting options within a form
+- **<u>Discussion Forum:</u>** Users can use discussion forum and can communicate and ask doubts amongst themselves. They can post their doubts as well as comment on it.
+
+- **<u>Viewing and Uploading Resources:</u>** This is the main crux of our whole project. Users can view and upload resources of all years and branches by selecting options within a form. All uploaded files are stored under the "uploads" folder
+
+- **<u>Contact Us:</u>** By using this page, users can message us if they want.
 
 - **<u>Miscellaneous Pages:</u>** Users can visit pages like FAQs, Testimonials, About Us, etc. to know more about our website
 
