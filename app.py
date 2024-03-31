@@ -31,7 +31,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'pramodadudhal521@gmail.com'
-app.config['MAIL_PASSWORD'] = 'fkoy zlql ftif izrs'
+app.config['MAIL_PASSWORD'] = 'afmg ayqa cosg ctzn'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 db = SQLAlchemy(app)
@@ -449,7 +449,7 @@ def reset_password():
         old_password = get_old_password(email)
         send_old_password_email(email, old_password)
         flash('Your old password has been sent to your email address.', 'success')
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     return render_template('reset_password.html', email=email)
 
 def get_old_password(username):

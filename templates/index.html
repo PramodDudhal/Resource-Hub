@@ -13,35 +13,11 @@
 	<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
 	<link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
 	<link rel="stylesheet" type="text/css" href="../static/styles/responsive.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/resource.css">
    
 	<!-- Your HTML content here -->
 
-<script>
-	document.addEventListener("DOMContentLoaded", function() {
-    var header = document.querySelector('.swipe_up_header');
-    var lastScrollTop = 0;
-    var delta = 5; // Number of pixels before we start hiding the header
 
-    window.addEventListener("scroll", function() {
-        var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-        // Determine scroll direction and distance
-        var scrollDirection = currentScroll > lastScrollTop ? 'down' : 'up';
-        var scrollDistance = Math.abs(currentScroll - lastScrollTop);
-
-        // If the scroll distance is larger than delta, hide/show the header
-        if (scrollDirection === 'down' && currentScroll > delta) {
-            header.classList.add('hide');
-        } else {
-            header.classList.remove('hide');
-        }
-
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
-    }, false);
-});
-
-
-	</script>
 </head>
 
 <body>
@@ -63,10 +39,11 @@
 					<div class="main_nav">
 						<ul class="main_nav_list">
 							<li class="main_nav_item"><a href="/">Home</a></li>
-							<li class="main_nav_item"><b><a href="/login">Login</b></a></li>
+							<li class="main_nav_item"><b><a href="/login">Sign In</b></a></li>
 							<li class="main_nav_item"><a href="/posts">Discussions</a></li>
 							<li class="main_nav_item"><b><a href="/select">Resources</b></a></li>
 							<li class="main_nav_item"><b><a href="/upload">Upload</a></b></a></li>
+							<li class="main_nav_item"><b><a href="/logout">Sign Out</a></b></a></li>
 						</ul>
 					</div>
 				</nav>
@@ -144,8 +121,8 @@
 						</div>
 						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 							<div class="hero_slide_content text-center">
-								<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your
-									<span>Education</span> today!
+								<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Explore.  
+									<span>Learn.</span> Succeed.
 								</h1>
 							</div>
 						</div>
@@ -158,9 +135,8 @@
 						</div>
 						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 							<div class="hero_slide_content text-center">
-								<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your
-									<span>Education</span> today!
-								</h1>
+								<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Unlocking potential, 
+									<span>click</span> by click!
 							</div>
 						</div>
 					</div>
