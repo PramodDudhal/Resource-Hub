@@ -112,12 +112,6 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired()])
     submit = SubmitField('Login')
 
-class Feedback(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    email = db.Column(db.String(100))
-    message = db.Column(db.Text)
-
 
 
 # index page route
@@ -146,7 +140,7 @@ def login():
             return render_template('success.html', param = "Login")
         else:
             # If the credentials are invalid, show an error message
-            flash('Invalid username or password', 'error')
+            return render_template('failure.html', action = "Login", link = 'login', message = None)
     
     # If the form is not submitted or validation fails, render the login template
     return render_template('login.html', form=form)
@@ -166,7 +160,7 @@ def signup():
         existing_user = User.query.filter_by(username=form.username.data).first()
         if existing_user:
             flash('Username already exists. Please choose a different one.', 'error')
-            return redirect(url_for('signup'))
+            return render_template('failure.html', action = "Sign Up", link = 'signup', message = 'Username already exists. Please choose a different one.')
 
         # If the username is unique, proceed with user registration
        
@@ -439,25 +433,6 @@ def update_password():
     user.password = new_password
     db.session.commit()
     return render_template('success.html', param = "Password Change")
-
-
-
-# Contact Us route
-@app.route('/contact', methods=['GET', 'POST'])
-@login_required
-def feedback():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        message = request.form['message']
-        
-        # Save the feedback to the database
-        new_feedback = Feedback(name=name, email=email, message=message)
-        db.session.add(new_feedback)
-        db.session.commit()
-        
-        return 'Thank you for your feedback!'
-    return render_template('contact.html')
 
 
 

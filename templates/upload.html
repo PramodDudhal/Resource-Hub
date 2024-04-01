@@ -81,6 +81,7 @@
             <option value="3rd">3rd Year</option>
             <option value="4th">4th Year</option>
         </select>
+        <span id="yearError" class="error"></span>
 
         <label for="branch">Branch of Study:</label>
         <select id="branch" name="branch">
@@ -96,12 +97,14 @@
             <option value="planning">Planning</option> 
             <option value="manufacturing">Manufacturing</option>
         </select>
+        <span id="branchError" class="error"></span>
 
         <label for="subject">Subject:</label>
         <select id="subject" name="subject">
             <option value="">Select Subject</option>
             <!-- Options will be dynamically updated based on the selected branch -->
         </select>
+        <span id="subjectError" class="error"></span>
 
         <label for="type">Resource Type:</label>
         <select id="type" name="type">
@@ -120,6 +123,7 @@
 
         <label for="subject">Title</label>
         <input type="text" id="title" name="title">
+        <span id="titleError" class="error"></span>
 
         <label for="file">Choose file:</label>
         <input type="file" id="file" name="file">
@@ -198,18 +202,51 @@
 
         // Function to validate form
         function validateForm() {
+            var yearSelect = document.getElementById("year");
+            var branchSelect = document.getElementById("branch");
+            var subjectSelect = document.getElementById("subject");
             var typeSelect = document.getElementById("type");
+            var titleSelect = document.getElementById("title");
             var fileInput = document.getElementById("file");
+
+            var yearError = document.getElementById("yearError");
+            var branchError = document.getElementById("branchError");
+            var subjectError = document.getElementById("subjectError");
             var typeError = document.getElementById("typeError");
+            var titleError = document.getElementById("titleError");
             var fileError = document.getElementById("fileError");
 
             // Reset error messages
+            yearError.textContent = "";
+            branchError.textContent = "";
+            subjectError.textContent = "";
             typeError.textContent = "";
+            titleError.textContent = "";
             fileError.textContent = "";
 
             // Validate resource type and file
+            if (yearSelect.value === "") {
+                yearError.textContent = "Please select a year.";
+                return false;
+            }
+
+            if (branchSelect.value === "") {
+                branchError.textContent = "Please select a branch.";
+                return false;
+            }
+
+            if (subjectSelect.value === "") {
+                subjectError.textContent = "Please select a subject.";
+                return false;
+            }
+
             if (typeSelect.value === "") {
                 typeError.textContent = "Please select a resource type.";
+                return false;
+            }
+
+            if (titleSelect.value === "") {
+                titleError.textContent = "Please enter a title";
                 return false;
             }
 
