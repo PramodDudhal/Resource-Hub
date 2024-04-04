@@ -76,12 +76,26 @@
         <label for="year">Year of Studying:</label>
         <select id="year" name="year">
             <option value="">Select Year</option>
-            <option value="1st">1st Year</option>
-            <option value="2nd">2nd Year</option>
-            <option value="3rd">3rd Year</option>
-            <option value="4th">4th Year</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
         </select>
         <span id="yearError" class="error"></span>
+
+        <label for="sem">Semester:</label>
+        <select id="sem" name="sem">
+            <option value="">Select Semester</option>
+            <option value="sem1">Semester 1</option>
+            <option value="sem2">Semester 2</option>
+            <option value="sem3">Semester 3</option>
+            <option value="sem4">Semester 4</option>
+            <option value="sem5">Semester 5</option>
+            <option value="sem6">Semester 6</option>
+            <option value="sem7">Semester 7</option>
+            <option value="sem8">Semester 8</option>
+        </select>
+        <span id="semError" class="error"></span>
 
         <label for="branch">Branch of Study:</label>
         <select id="branch" name="branch">
@@ -110,6 +124,7 @@
         <select id="type" name="type">
             <option value="">Select Resource Type</option>
             <option value="Lecture Material">Lecture Material</option>
+            <option value="Lecture Material">Lab Resource</option>
             <option value="Tutorial">Tutorial</option>
             <option value="Assignment">Assignment</option>
             <option value="Notes">Notes</option>
@@ -204,6 +219,7 @@
         function validateForm() {
             var yearSelect = document.getElementById("year");
             var branchSelect = document.getElementById("branch");
+            var semSelect = document.getElementById("sem");
             var subjectSelect = document.getElementById("subject");
             var typeSelect = document.getElementById("type");
             var titleSelect = document.getElementById("title");
@@ -211,6 +227,7 @@
 
             var yearError = document.getElementById("yearError");
             var branchError = document.getElementById("branchError");
+            var semError = document.getElementById("semError");
             var subjectError = document.getElementById("subjectError");
             var typeError = document.getElementById("typeError");
             var titleError = document.getElementById("titleError");
@@ -219,6 +236,7 @@
             // Reset error messages
             yearError.textContent = "";
             branchError.textContent = "";
+            semError.textContent = "";
             subjectError.textContent = "";
             typeError.textContent = "";
             titleError.textContent = "";
@@ -232,6 +250,11 @@
 
             if (branchSelect.value === "") {
                 branchError.textContent = "Please select a branch.";
+                return false;
+            }
+
+            if (semSelect.value === "") {
+                semError.textContent = "Please select a semester.";
                 return false;
             }
 

@@ -329,6 +329,44 @@ def delete_comment(comment_id):
 
 
 
+# Hero card linking routes
+@app.route('/book')
+def books():
+    return render_template('select.html', type = "Book")
+
+@app.route('/pyps')
+def pyps():
+    return render_template('select.html', type = "Past Year Paper")
+
+@app.route('/notes')
+def notes():
+    return render_template('select.html', type = "Notes")
+
+@app.route('/lecmaterial')
+def lecmaterial():
+    return render_template('select.html', type = "Lecture Material")
+
+
+
+# Year wise resource selection routes
+@app.route('/firstyr')
+def firstyr():
+    return render_template('select.html', year = "1st Year")
+
+@app.route('/secondyr')
+def secondyr():
+    return render_template('select.html', year = "2nd Year")
+
+@app.route('/thirdyr')
+def thirdyr():
+    return render_template('select.html', year = "3rd Year")
+
+@app.route('/fourthyr')
+def fourthyr():
+    return render_template('select.html', year = "4th Year")
+
+
+
 # Forgot and Change Password routes
 @app.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
