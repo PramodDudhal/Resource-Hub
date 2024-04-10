@@ -83,8 +83,14 @@
         </select>
         <span id="yearError" class="error"></span>
 
+        <label for="branch">Branch of Study:</label>
+        <select id="branch" name="branch" onchange="updateSubjects()">
+            <option value="">Select Branch</option>
+        </select>
+        <span id="branchError" class="error"></span>
+
         <label for="sem">Semester:</label>
-        <select id="sem" name="sem">
+        <select id="sem" name="sem" onchange="updateSubjects()">
             <option value="">Select Semester</option>
             <option value="sem1">Semester 1</option>
             <option value="sem2">Semester 2</option>
@@ -97,22 +103,6 @@
         </select>
         <span id="semError" class="error"></span>
 
-        <label for="branch">Branch of Study:</label>
-        <select id="branch" name="branch">
-            <option value="">Select Branch</option>
-            <option value="computer">Computer Science</option>
-            <option value="mechanical">Mechanical</option>
-            <option value="E & TC">E & TC</option>
-            <option value="civil">Civil</option>
-            <option value="instrumentation">Instrumentation</option>
-            <option value="math">Mathematics</option>
-            <option value="science">Applied Science</option>
-            <option value="electrical">Electrical</option>
-            <option value="planning">Planning</option> 
-            <option value="manufacturing">Manufacturing</option>
-        </select>
-        <span id="branchError" class="error"></span>
-
         <label for="subject">Subject:</label>
         <select id="subject" name="subject">
             <option value="">Select Subject</option>
@@ -124,7 +114,7 @@
         <select id="type" name="type">
             <option value="">Select Resource Type</option>
             <option value="Lecture Material">Lecture Material</option>
-            <option value="Lecture Material">Lab Resource</option>
+            <option value="Lab Resource">Lab Resource</option>
             <option value="Tutorial">Tutorial</option>
             <option value="Assignment">Assignment</option>
             <option value="Notes">Notes</option>
@@ -148,73 +138,308 @@
     </form>
 
     <script>
-        // Function to update subject options based on selected branch
+        // Function to update the branch options based on the year
+        function updateBranch() {
+            var yearSelect = document.getElementById("year");
+            var branchSelect = document.getElementById("branch");
+
+            // Clear existing options
+            branchSelect.innerHTML = '<option value="">Select Branch</option>';
+
+            switch (yearSelect.value) {
+                case "1st Year":
+                    branchSelect.innerHTML += `
+                            <option value="E-group">E-group</option>
+                            <option value="M-group">M-group</option>
+                        `;
+                    break;
+                default:
+                    branchSelect.innerHTML += `
+                        <option value="computer">Computer</option>
+                        <option value="mechanical">Mechanical</option>
+                        <option value="E & TC">E & TC</option>
+                        <option value="civil">Civil</option>
+                        <option value="instrumentation">Instrumentation</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="planning">Planning</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="metallurgy">Metallurgy</option>
+                    `;
+            }
+        }
+
+        // Call updateBranch() when year selection changes
+        document.getElementById("year").addEventListener("change", updateBranch);
+
+
+        // Function to update the branch options based on the year
+        function updateSem() {
+            var yearSelect = document.getElementById("year");
+            var semSelect = document.getElementById("sem");
+
+            // Clear existing options
+            semSelect.innerHTML = '<option value="">Select Semester</option>';
+
+            switch (yearSelect.value) {
+                case "1st Year":
+                    semSelect.innerHTML += `
+                            <option value="sem1">Semester 1</option>
+                            <option value="sem2">Semester 2</option>
+                        `;
+                    break;
+                case "2nd Year":
+                    semSelect.innerHTML += `
+                            <option value="sem3">Semester 3</option>
+                            <option value="sem4">Semester 4</option>
+                        `;
+                    break;
+                case "3rd Year":
+                    semSelect.innerHTML += `
+                            <option value="sem5">Semester 5</option>
+                            <option value="sem6">Semester 6</option>
+                        `;
+                    break;
+                case "4th Year":
+                    semSelect.innerHTML += `
+                            <option value="sem7">Semester 7</option>
+                            <option value="sem8">Semester 8</option>
+                        `;
+                    break;
+                default:
+                    semSelect.innerHTML += `
+                            <option value="sem1">Semester 1</option>
+                            <option value="sem2">Semester 2</option>
+                            <option value="sem3">Semester 3</option>
+                            <option value="sem4">Semester 4</option>
+                            <option value="sem5">Semester 5</option>
+                            <option value="sem6">Semester 6</option>
+                            <option value="sem7">Semester 7</option>
+                            <option value="sem8">Semester 8</option>
+                        `;
+            }
+        }
+
+        // Call updateSem() when year selection changes
+        document.getElementById("year").addEventListener("change", updateSem);
+
+
         function updateSubjects() {
             var branchSelect = document.getElementById("branch");
+            var semSelect = document.getElementById("sem");
             var subjectSelect = document.getElementById("subject");
 
             // Clear existing options
             subjectSelect.innerHTML = '<option value="">Select Subject</option>';
 
-            // Add options based on selected branch
+            // Define subjects based on branch and semester
+            var subjects = [];
             switch (branchSelect.value) {
+                case "E-group":
+                    switch (semSelect.value) {
+                        case "sem1":
+                            subjects = ["LA", "EP", "BEEE", "BFE", "PSPP", "CL", "IKS", "LLC"];
+                            break;
+                        case "sem2":
+                            subjects = ["QP", "PS", "DLD", "EDG", "DS", "WD", "CS", "LLC-II"];
+                            break;
+                    }
+                    break;
+                case "M-group":
+                    switch (semSelect.value) {
+                        case "sem1":
+                            subjects = ["MUCP", "EP", "BEEE", "EDG", "SME", "CS", "LLC", "MPF-1", "DTIL"];
+                            break;
+                        case "sem2":
+                            subjects = ["EC", "ODEMC", "PPS", "EM", "MS", "MPF-II", "IKS", "CCEA", "BFE"];
+                            break;
+                    }
+                    break;
                 case "computer":
-                    subjectSelect.innerHTML += '<option value="cs_subject1">CS Subject 1</option>';
-                    subjectSelect.innerHTML += '<option value="cs_subject2">CS Subject 2</option>';
-                    // Add more Computer Science subjects as needed
+                    switch (semSelect.value) {
+                        case "sem3":
+                            subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
+                            break;
+                        case "sem4":
+                            subjects = ["VCPDE", "BFE", "RPPOOP", "SA", "TOC", "MT", "DSA-II", "DC"];
+                            break;
+                        case "sem5":
+                            subjects = ["HONOR1-MSD", "HONOR1-FICT", "PSE", "COL", "CO", "DBMS", "AI", "CN", "IFC-ROBO", "SE-1", "EPP",];
+                            break;
+                        case "sem6":
+                            subjects = ["HONOR2-EH", "HONOR2-BDA", "ADS", "SP", "RTCN", "WST", "OS", "DAA", "SE-2", "DSCI", "ES"];
+                            break;
+                        case "sem7":
+                            subjects = ["HONOR3-DL", "HONOR3-MA", "DE3-IOT", "DE3-NLP", "DE3-CS", "CNS", "CC", "IPR", "DE2-IR", "DE2-ADBMS", "DE2-DS"];
+                            break;
+                        case "sem8":
+                            subjects = ["HONOR4-RL", "HONOR4-IOTS", "DE4-SA", "DE4-GIS", "DE4-GPUC", "DE4-MAN"];
+                            break;
+                    }
                     break;
                 case "mechanical":
-                    subjectSelect.innerHTML += '<option value="mech_subject1">Mech Subject 1</option>';
-                    subjectSelect.innerHTML += '<option value="mech_subject2">Mech Subject 2</option>';
-                    // Add more Mechanical subjects as needed
+                    switch (semSelect.value) {
+                        case "sem3":
+                            subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
+                            break;
+                        case "sem4":
+                            subjects = ["VCPDE", "BFE", "RPPOOP", "SA", "TOC", "MT", "DSA-II", "DC"];
+                            break;
+                        case "sem5":
+                            subjects = ["HONOR1-MSD", "HONOR1-FICT", "PSE", "COL", "CO", "DBMS", "AI", "CN", "IFC-ROBO", "SE-1", "EPP",];
+                            break;
+                        case "sem6":
+                            subjects = ["HONOR2-EH", "HONOR2-BDA", "ADS", "SP", "RTCN", "WST", "OS", "DAA", "SE-2", "DSCI", "ES"];
+                            break;
+                        case "sem7":
+                            subjects = ["HONOR3-DL", "HONOR3-MA", "DE3-IOT", "DE3-NLP", "DE3-CS", "CNS", "CC", "IPR", "DE2-IR", "DE2-ADBMS", "DE2-DS"];
+                            break;
+                        case "sem8":
+                            subjects = ["HONOR4-RL", "HONOR4-IOTS", "DE4-SA", "DE4-GIS", "DE4-GPUC", "DE4-MAN"];
+                            break;
+                    }
                     break;
                 case "E & TC":
-                    subjectSelect.innerHTML += '<option value="etc_subject1">E & TC Subject 1</option>';
-                    subjectSelect.innerHTML += '<option value="etc_subject2">E & TC Subject 2</option>';
-                    // Add more E & TC subjects as needed
+                    switch (semSelect.value) {
+                        case "sem3":
+                            subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
+                            break;
+                        case "sem4":
+                            subjects = ["VCPDE", "BFE", "RPPOOP", "SA", "TOC", "MT", "DSA-II", "DC"];
+                            break;
+                        case "sem5":
+                            subjects = ["HONOR1-MSD", "HONOR1-FICT", "PSE", "COL", "CO", "DBMS", "AI", "CN", "IFC-ROBO", "SE-1", "EPP",];
+                            break;
+                        case "sem6":
+                            subjects = ["HONOR2-EH", "HONOR2-BDA", "ADS", "SP", "RTCN", "WST", "OS", "DAA", "SE-2", "DSCI", "ES"];
+                            break;
+                        case "sem7":
+                            subjects = ["HONOR3-DL", "HONOR3-MA", "DE3-IOT", "DE3-NLP", "DE3-CS", "CNS", "CC", "IPR", "DE2-IR", "DE2-ADBMS", "DE2-DS"];
+                            break;
+                        case "sem8":
+                            subjects = ["HONOR4-RL", "HONOR4-IOTS", "DE4-SA", "DE4-GIS", "DE4-GPUC", "DE4-MAN"];
+                            break;
+                    }
                     break;
                 case "civil":
-                    subjectSelect.innerHTML += '<option value="civil_subject1">Civil Subject 1</option>';
-                    subjectSelect.innerHTML += '<option value="civil_subject2">Civil Subject 2</option>';
-                    // Add more Civil subjects as needed
+                    switch (semSelect.value) {
+                        case "sem3":
+                            subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
+                            break;
+                        case "sem4":
+                            subjects = ["VCPDE", "BFE", "RPPOOP", "SA", "TOC", "MT", "DSA-II", "DC"];
+                            break;
+                        case "sem5":
+                            subjects = ["HONOR1-MSD", "HONOR1-FICT", "PSE", "COL", "CO", "DBMS", "AI", "CN", "IFC-ROBO", "SE-1", "EPP",];
+                            break;
+                        case "sem6":
+                            subjects = ["HONOR2-EH", "HONOR2-BDA", "ADS", "SP", "RTCN", "WST", "OS", "DAA", "SE-2", "DSCI", "ES"];
+                            break;
+                        case "sem7":
+                            subjects = ["HONOR3-DL", "HONOR3-MA", "DE3-IOT", "DE3-NLP", "DE3-CS", "CNS", "CC", "IPR", "DE2-IR", "DE2-ADBMS", "DE2-DS"];
+                            break;
+                        case "sem8":
+                            subjects = ["HONOR4-RL", "HONOR4-IOTS", "DE4-SA", "DE4-GIS", "DE4-GPUC", "DE4-MAN"];
+                            break;
+                    }
                     break;
                 case "instrumentation":
-                    subjectSelect.innerHTML += '<option value="instru_subject1">Instrumentation Subject 1</option>';
-                    subjectSelect.innerHTML += '<option value="instru_subject2">Instrumentation Subject 2</option>';
-                    // Add more Instrumentation subjects as needed
-                    break;
-                case "math":
-                    subjectSelect.innerHTML += '<option value="math_subject1">Mathematics Subject 1</option>';
-                    subjectSelect.innerHTML += '<option value="math_subject2">Mathematics Subject 2</option>';
-                    // Add more Mathematics subjects as needed
-                    break;
-                case "science":
-                    subjectSelect.innerHTML += '<option value="sci_subject1">Applied Science Subject 1</option>';
-                    subjectSelect.innerHTML += '<option value="sci_subject2">Applied Science Subject 2</option>';
-                    // Add more Applied Science subjects as needed
+                    switch (semSelect.value) {
+                        case "sem3":
+                            subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
+                            break;
+                        case "sem4":
+                            subjects = ["VCPDE", "BFE", "RPPOOP", "SA", "TOC", "MT", "DSA-II", "DC"];
+                            break;
+                        case "sem5":
+                            subjects = ["HONOR1-MSD", "HONOR1-FICT", "PSE", "COL", "CO", "DBMS", "AI", "CN", "IFC-ROBO", "SE-1", "EPP",];
+                            break;
+                        case "sem6":
+                            subjects = ["HONOR2-EH", "HONOR2-BDA", "ADS", "SP", "RTCN", "WST", "OS", "DAA", "SE-2", "DSCI", "ES"];
+                            break;
+                        case "sem7":
+                            subjects = ["HONOR3-DL", "HONOR3-MA", "DE3-IOT", "DE3-NLP", "DE3-CS", "CNS", "CC", "IPR", "DE2-IR", "DE2-ADBMS", "DE2-DS"];
+                            break;
+                        case "sem8":
+                            subjects = ["HONOR4-RL", "HONOR4-IOTS", "DE4-SA", "DE4-GIS", "DE4-GPUC", "DE4-MAN"];
+                            break;
+                    }
                     break;
                 case "electrical":
-                    subjectSelect.innerHTML += '<option value="elec_subject1">Electrical Subject 1</option>';
-                    subjectSelect.innerHTML += '<option value="elec_subject2">Electrical Subject 2</option>';
-                    // Add more Electrical subjects as needed
-                    break;
-                case "planning":
-                    subjectSelect.innerHTML += '<option value="plan_subject1">Planning Subject 1</option>';
-                    subjectSelect.innerHTML += '<option value="plan_subject2">Planning Subject 2</option>';
-                    // Add more Planning subjects as needed
+                    switch (semSelect.value) {
+                        case "sem3":
+                            subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
+                            break;
+                        case "sem4":
+                            subjects = ["VCPDE", "BFE", "RPPOOP", "SA", "TOC", "MT", "DSA-II", "DC"];
+                            break;
+                        case "sem5":
+                            subjects = ["HONOR1-MSD", "HONOR1-FICT", "PSE", "COL", "CO", "DBMS", "AI", "CN", "IFC-ROBO", "SE-1", "EPP",];
+                            break;
+                        case "sem6":
+                            subjects = ["HONOR2-EH", "HONOR2-BDA", "ADS", "SP", "RTCN", "WST", "OS", "DAA", "SE-2", "DSCI", "ES"];
+                            break;
+                        case "sem7":
+                            subjects = ["HONOR3-DL", "HONOR3-MA", "DE3-IOT", "DE3-NLP", "DE3-CS", "CNS", "CC", "IPR", "DE2-IR", "DE2-ADBMS", "DE2-DS"];
+                            break;
+                        case "sem8":
+                            subjects = ["HONOR4-RL", "HONOR4-IOTS", "DE4-SA", "DE4-GIS", "DE4-GPUC", "DE4-MAN"];
+                            break;
+                    }
                     break;
                 case "manufacturing":
-                    subjectSelect.innerHTML += '<option value="manu_subject1">Manufacturing Subject 1</option>';
-                    subjectSelect.innerHTML += '<option value="manu_subject2">Manufacturing Subject 2</option>';
-                    // Add more Manufacturing subjects as needed
+                    switch (semSelect.value) {
+                        case "sem3":
+                            subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
+                            break;
+                        case "sem4":
+                            subjects = ["VCPDE", "BFE", "RPPOOP", "SA", "TOC", "MT", "DSA-II", "DC"];
+                            break;
+                        case "sem5":
+                            subjects = ["HONOR1-MSD", "HONOR1-FICT", "PSE", "COL", "CO", "DBMS", "AI", "CN", "IFC-ROBO", "SE-1", "EPP",];
+                            break;
+                        case "sem6":
+                            subjects = ["HONOR2-EH", "HONOR2-BDA", "ADS", "SP", "RTCN", "WST", "OS", "DAA", "SE-2", "DSCI", "ES"];
+                            break;
+                        case "sem7":
+                            subjects = ["HONOR3-DL", "HONOR3-MA", "DE3-IOT", "DE3-NLP", "DE3-CS", "CNS", "CC", "IPR", "DE2-IR", "DE2-ADBMS", "DE2-DS"];
+                            break;
+                        case "sem8":
+                            subjects = ["HONOR4-RL", "HONOR4-IOTS", "DE4-SA", "DE4-GIS", "DE4-GPUC", "DE4-MAN"];
+                            break;
+                    }
+                    break;
+                case "metallurgy":
+                    switch (semSelect.value) {
+                        case "sem3":
+                            subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
+                            break;
+                        case "sem4":
+                            subjects = ["VCPDE", "BFE", "RPPOOP", "SA", "TOC", "MT", "DSA-II", "DC"];
+                            break;
+                        case "sem5":
+                            subjects = ["HONOR1-MSD", "HONOR1-FICT", "PSE", "COL", "CO", "DBMS", "AI", "CN", "IFC-ROBO", "SE-1", "EPP",];
+                            break;
+                        case "sem6":
+                            subjects = ["HONOR2-EH", "HONOR2-BDA", "ADS", "SP", "RTCN", "WST", "OS", "DAA", "SE-2", "DSCI", "ES"];
+                            break;
+                        case "sem7":
+                            subjects = ["HONOR3-DL", "HONOR3-MA", "DE3-IOT", "DE3-NLP", "DE3-CS", "CNS", "CC", "IPR", "DE2-IR", "DE2-ADBMS", "DE2-DS"];
+                            break;
+                        case "sem8":
+                            subjects = ["HONOR4-RL", "HONOR4-IOTS", "DE4-SA", "DE4-GIS", "DE4-GPUC", "DE4-MAN"];
+                            break;
+                    }
                     break;
                 // Add more cases for additional branches
             }
+
+            // Populate subject options
+            subjects.forEach(function (subject) {
+                subjectSelect.innerHTML += '<option value="' + subject + '">' + subject + '</option>';
+            });
         }
 
-        // Call updateSubjects() when branch selection changes
-        document.getElementById("branch").addEventListener("change", updateSubjects);
-
+        
         // Function to validate form
         function validateForm() {
             var yearSelect = document.getElementById("year");
@@ -281,6 +506,17 @@
             // Extract file extension
             var fileName = fileInput.value;
             var fileExtension = fileName.split(".").pop();
+
+            // Check file extension based on resource type
+            if (typeSelect.value === "Video" && fileExtension.toLowerCase() !== "mp4") {
+                fileError.textContent = "Please choose a .mp4 file for video.";
+                return false;
+            }
+
+            if (typeSelect.value === "Book" && fileExtension.toLowerCase() !== "pdf") {
+                fileError.textContent = "Please choose a .pdf file for book.";
+                return false;
+            }
 
             // Add more conditions for other resource types as needed
 

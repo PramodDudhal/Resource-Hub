@@ -9,6 +9,7 @@ from datetime import datetime
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate
 from flask_mail import Mail, Message
+from validate_email import validate_email
 import sqlite3
 import random
 import logging
@@ -163,6 +164,10 @@ def signup():
             return render_template('failure.html', action = "Sign Up", link = 'signup', message = 'Username already exists. Please choose a different one.')
 
         # If the username is unique, proceed with user registration
+        
+        condition = "@coeptech.ac.in" in form.username.data
+        if (not condition):
+            return render_template('failure.html', action = "Logout", message = "Your email id is not a college email id", link = 'signup')
        
         new_user = User(name=form.name.data,
                         username=form.username.data,
