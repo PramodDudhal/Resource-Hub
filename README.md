@@ -43,8 +43,6 @@ The following features are provided by our project:
 
 - **<u>Viewing and Uploading Resources:</u>** This is the main crux of our whole project. Users can view and upload resources of all years and branches by selecting options within a form. All uploaded files are stored under the "uploads" folder
 
-- **<u>Contact Us:</u>** By using this page, users can message us if they want.
-
 - **<u>Miscellaneous Pages:</u>** Users can visit pages like FAQs, Testimonials, About Us, etc. to know more about our website
 
 ## Contributors
