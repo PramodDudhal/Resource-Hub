@@ -9,7 +9,6 @@ from datetime import datetime
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate
 from flask_mail import Mail, Message
-from validate_email import validate_email
 import sqlite3
 import random
 import logging
