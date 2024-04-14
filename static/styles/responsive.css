@@ -345,3 +345,65 @@
 {
 	
 }
+
+        /* Base button styles */
+        .custom-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+            cursor: pointer;
+            outline: none; /* Remove default focus outline */
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        /* Hover effect */
+        .custom-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Gradient background */
+        .custom-button-gradient {
+			background: linear-gradient(to right, #fc5c7d, #6a82fb, #05dfd7);
+        }
+
+        /* Rounded corners */
+        .custom-button-rounded {
+            border-radius: 50px;
+        }
+
+        /* Large button */
+        .custom-button-large {
+            padding: 16px 32px;
+            font-size: 18px;
+        }
+
+        /* Button with border */
+        .custom-button-border {
+            border: 2px solid #007bff;
+            background-color: transparent;
+            color: #007bff;
+        }
+
+        /* Inverted style */
+        .custom-button-inverted {
+            background-color: transparent;
+            color: #007bff;
+            box-shadow: none;
+        }
+
+        /* Inverted style on hover */
+        .custom-button-inverted:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    

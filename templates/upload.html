@@ -148,12 +148,7 @@
 
             switch (yearSelect.value) {
                 case "1st Year":
-                    branchSelect.innerHTML += `
-                            <option value="E-group">E-group</option>
-                            <option value="M-group">M-group</option>
-                        `;
-                    break;
-                default:
+                    
                     branchSelect.innerHTML += `
                         <option value="computer">Computer</option>
                         <option value="mechanical">Mechanical</option>
@@ -234,28 +229,14 @@
             // Define subjects based on branch and semester
             var subjects = [];
             switch (branchSelect.value) {
-                case "E-group":
+                case "computer":
                     switch (semSelect.value) {
                         case "sem1":
-                            subjects = ["LA", "EP", "BEEE", "BFE", "PSPP", "CL", "IKS", "LLC"];
+                            subjects = ["LA", "OMP", "BEE", "FME", "PPS", "ACH", "IKS", "LLC"];
                             break;
                         case "sem2":
                             subjects = ["QP", "PS", "DLD", "EDG", "DS", "WD", "CS", "LLC-II"];
                             break;
-                    }
-                    break;
-                case "M-group":
-                    switch (semSelect.value) {
-                        case "sem1":
-                            subjects = ["MUCP", "EP", "BEEE", "EDG", "SME", "CS", "LLC", "MPF-1", "DTIL"];
-                            break;
-                        case "sem2":
-                            subjects = ["EC", "ODEMC", "PPS", "EM", "MS", "MPF-II", "IKS", "CCEA", "BFE"];
-                            break;
-                    }
-                    break;
-                case "computer":
-                    switch (semSelect.value) {
                         case "sem3":
                             subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
                             break;
@@ -278,6 +259,12 @@
                     break;
                 case "mechanical":
                     switch (semSelect.value) {
+                        case "sem1":
+                            subjects = ["LA", "OMP", "BEE", "FME", "PPS", "ACH", "IKS", "LLC"];
+                            break;
+                        case "sem2":
+                            subjects = ["QP", "PS", "DLD", "EDG", "DS", "WD", "CS", "LLC-II"];
+                            break;
                         case "sem3":
                             subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
                             break;
@@ -300,6 +287,12 @@
                     break;
                 case "E & TC":
                     switch (semSelect.value) {
+                        case "sem1":
+                            subjects = ["LA", "OMP", "BEE", "FME", "PPS", "ACH", "IKS", "LLC"];
+                            break;
+                        case "sem2":
+                            subjects = ["QP", "PS", "DLD", "EDG", "DS", "WD", "CS", "LLC-II"];
+                            break;
                         case "sem3":
                             subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
                             break;
@@ -322,6 +315,12 @@
                     break;
                 case "civil":
                     switch (semSelect.value) {
+                        case "sem1":
+                            subjects = ["LA", "OMP", "BEE", "FME", "PPS", "ACH", "IKS", "LLC"];
+                            break;
+                        case "sem2":
+                            subjects = ["QP", "PS", "DLD", "EDG", "DS", "WD", "CS", "LLC-II"];
+                            break;
                         case "sem3":
                             subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
                             break;
@@ -344,6 +343,12 @@
                     break;
                 case "instrumentation":
                     switch (semSelect.value) {
+                        case "sem1":
+                            subjects = ["LA", "OMP", "BEE", "FME", "PPS", "ACH", "IKS", "LLC"];
+                            break;
+                        case "sem2":
+                            subjects = ["QP", "PS", "DLD", "EDG", "DS", "WD", "CS", "LLC-II"];
+                            break;
                         case "sem3":
                             subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
                             break;
@@ -366,6 +371,12 @@
                     break;
                 case "electrical":
                     switch (semSelect.value) {
+                        case "sem1":
+                            subjects = ["LA", "OMP", "BEE", "FME", "PPS", "ACH", "IKS", "LLC"];
+                            break;
+                        case "sem2":
+                            subjects = ["QP", "PS", "DLD", "EDG", "DS", "WD", "CS", "LLC-II"];
+                            break;
                         case "sem3":
                             subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
                             break;
@@ -388,6 +399,12 @@
                     break;
                 case "manufacturing":
                     switch (semSelect.value) {
+                        case "sem1":
+                            subjects = ["LA", "OMP", "BEE", "FME", "PPS", "ACH", "IKS", "LLC"];
+                            break;
+                        case "sem2":
+                            subjects = ["QP", "PS", "DLD", "EDG", "DS", "WD", "CS", "LLC-II"];
+                            break;
                         case "sem3":
                             subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
                             break;
@@ -410,6 +427,12 @@
                     break;
                 case "metallurgy":
                     switch (semSelect.value) {
+                        case "sem1":
+                            subjects = ["LA", "OMP", "BEE", "FME", "PPS", "ACH", "IKS", "LLC"];
+                            break;
+                        case "sem2":
+                            subjects = ["QP", "PS", "DLD", "EDG", "DS", "WD", "CS", "LLC-II"];
+                            break;
                         case "sem3":
                             subjects = ["ODEMC", "PLEVH", "INC", "DTL", "FCS", "DSA-I", "DLD", "DSGT", "PPL"];
                             break;
