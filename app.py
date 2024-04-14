@@ -519,4 +519,29 @@ def create_database():
 
 if __name__ == '__main__':
     create_database()
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
+
+
+
+
+
+# app.py
+
+# app.py
+
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
+def create_app():
+    app = Flask(__name__)
+
+    # Configure app (replace with your configuration)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    # Initialize database with the app context
+    db.init_app(app)
+
+    return app
