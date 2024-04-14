@@ -335,18 +335,22 @@ def delete_comment(comment_id):
 
 # Hero card linking routes
 @app.route('/book')
+@login_required
 def books():
     return render_template('select.html', type = "Book")
 
 @app.route('/pyps')
+@login_required
 def pyps():
     return render_template('select.html', type = "Past Year Paper")
 
 @app.route('/notes')
+@login_required
 def notes():
     return render_template('select.html', type = "Notes")
 
 @app.route('/lecmaterial')
+@login_required
 def lecmaterial():
     return render_template('select.html', type = "Lecture Material")
 
@@ -354,18 +358,22 @@ def lecmaterial():
 
 # Year wise resource selection routes
 @app.route('/firstyr')
+@login_required
 def firstyr():
     return render_template('select.html', year = "1st Year")
 
 @app.route('/secondyr')
+@login_required
 def secondyr():
     return render_template('select.html', year = "2nd Year")
 
 @app.route('/thirdyr')
+@login_required
 def thirdyr():
     return render_template('select.html', year = "3rd Year")
 
 @app.route('/fourthyr')
+@login_required
 def fourthyr():
     return render_template('select.html', year = "4th Year")
 
